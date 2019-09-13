@@ -66,7 +66,7 @@
             <!--<div class="slds-align_absolute-center" onclick="{! c.onIconClick}">
                 <lightning:icon  iconName="{! (v.toggleIcon) ? 'utility:lock' : 'action:password_unlock' }" size="small" alternativeText="Lock/Unlock Filled Data" title="Click to lock/unlock planned quantity which is saved" />
             </div><br/>-->
-            <div style="width: 95%; height:800px;" class="slds-scrollable_x slds-scrollable_y">
+            <div style="width: 95%; height:95%;" class="slds-scrollable_x slds-scrollable_y">
                 <table id="myTable"
                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered  " role="grid"
                        >

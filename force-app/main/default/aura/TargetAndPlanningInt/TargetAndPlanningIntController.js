@@ -75,7 +75,8 @@
         var mnth = event.currentTarget.dataset.mpmonth;
         var aopIdByAccProdIdMap = component.get("v.aopIdByAccIdMap");
         var monthlyAOPId = aopIdByAccProdIdMap[accAndProdId];  
-        
+        console.log("In Target&PlaningInt-->C-->In onAOPMouseOverFireAppEvt_M-->monthlyAOPId-->"+monthlyAOPId);
+        console.log("In Target&PlaningInt-->C-->In onAOPMouseOverFireAppEvt_M-->accId-->"+acctId);
         var appEvent = $A.get("e.c:AOPDetailAppEvt");
         appEvent.setParams({
             showDetails:true,
@@ -106,7 +107,7 @@
          	console.log("In Target&PlaningInt-->C-->doInit-->val of first Load-->"+firstLoad);   
         }
 		*/ 
-        console.log("In Target&PlaningInt-->C-->In doInit_M!!-->For Month-->"+component.get("v.targetMonth")+"--> Val of EndDay-->"+component.get("v.endDay"));
+       // console.log("In Target&PlaningInt-->C-->In doInit_M!!-->For Month-->"+component.get("v.targetMonth")+"--> Val of EndDay-->"+component.get("v.endDay"));
         helper.onInit(component,event);
     },
     onToggleValueChangeHandler : function(component, event, helper){

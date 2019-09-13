@@ -356,7 +356,7 @@
                                 
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input  value="{!v.custEvaluation.Year_of_Establishment__c}" label="Year of Establishment" />
+                                    <lightning:input aura:id="recField" required="true" value="{!v.custEvaluation.Year_of_Establishment__c}" label="Year of Establishment" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
@@ -387,31 +387,31 @@
                         <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
                             <div class="slds-grid slds-wrap slds-gutters">
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Annual_Turn_over_in_USD__c}" label="Annual Turn over (in USD)" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Annual_Turn_over_in_USD__c}" label="Annual Turn over (in USD)" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Employees__c}" label="No of Employees" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Employees__c}" label="No of Employees" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Distribution_centers_Branch__c}" label="No of Distribution centers / Branch" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Distribution_centers_Branch__c}" label="No of Distribution centers / Branch" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Areas_covered__c}" label="Areas covered" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Areas_covered__c}" label="Areas covered" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Sales_Staff__c}" label="Number of Sales Staff" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Sales_Staff__c}" label="Number of Sales Staff" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text" value="{!v.custEvaluation.Current_Distribution_Name_of_Companies__c}" label="Current Distribution Details - Name of Companies" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="text" value="{!v.custEvaluation.Current_Distribution_Name_of_Companies__c}" label="Current Distribution Details - Name of Companies" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Products_Handled_with_company__c}" label="Number of Products Handled with company information" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Products_Handled_with_company__c}" label="Number of Products Handled with company information" />
                                 </div>
                             </div>
                         </div>
@@ -427,7 +427,7 @@
                         <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
                             <div class="slds-grid slds-wrap slds-gutters">
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Population__c}" label="Population" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Population__c}" label="Population" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
@@ -456,7 +456,7 @@
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Eye_surgeons__c}" label="No of Eye surgeons" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Eye_surgeons__c}" label="No of Eye surgeons" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
@@ -464,7 +464,7 @@
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
-                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Cataract_surgery_annum__c}" label="No of Cataract surgery / annum" />
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Cataract_surgery_annum__c}" label="No of Cataract surgery / annum" />
                                 </div>
                                 
                                 <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
@@ -490,7 +490,7 @@
                         <div class="slds-section slds-is-open">
                             <h3 class="slds-section__title">
                                 <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
-                                    <span class="slds-truncate" >Market Profile (Ophthalmic Products)</span>
+                                    <span class="slds-truncate" >Market Profile</span>
                                 </button>
                             </h3>
                             <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">

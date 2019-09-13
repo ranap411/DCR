@@ -26,6 +26,7 @@
                     component.set("v.accName",retDatas[0].Monthly_Target__r.Account__r.Name);
                     component.set("v.aopQty",retDatas[0].Monthly_Target__r.Target_Quantity__c);
                     component.set("v.remQty",retDatas[0].Monthly_Target__r.Remaining_Qty__c);
+                    component.set("v.aopName",retDatas[0].Monthly_Target__r.Name);
                     component.set("v.prodName",retDatas[0].Product__r.Name);
                     component.set("v.mppData", retDatas);
                     

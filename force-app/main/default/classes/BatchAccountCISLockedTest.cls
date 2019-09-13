@@ -8,7 +8,7 @@ public class BatchAccountCISLockedTest {
         // insert 10 accounts
         for (Integer i=0;i<10;i++) {
             accounts.add(new Account(name='Account '+i, Medical_Registration_No__c='123456'+i,
-                Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false));
+                Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,GSTIN_No__c='GSTIN2343423456'));
         }
         insert accounts;
         

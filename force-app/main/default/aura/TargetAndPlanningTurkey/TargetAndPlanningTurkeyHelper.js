@@ -65,6 +65,7 @@
     updateExistingMppValueOnHtmlElement  : function(component, event) {
         //console.log('In Rendering Helper!');
         var elemntMap = component.get("v.testMap"); // stores existing mpp value's against Id(prod+acc+mp).
+        //console.log("H-->updateExistingMppValueOnHtmlElement_M-->Existing MPP ARRAY-->"+JSON.stringify(elemntMap));
         //console.log('MPP ARRAY SIZE-->'+Object.keys(elemntMap).length);
         //var tstMap2 = component.get("v.testMap2");
                  

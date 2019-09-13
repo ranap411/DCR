@@ -18,7 +18,7 @@ public class AccountBranchControllerTest {
         
         Profile p = [SELECT Id FROM Profile WHERE Name='International Sales'];
 
-           UserRole r =[SELECT Id,name FROM UserRole WHERE Name='SS_NSM'];
+        UserRole r =[SELECT Id,name FROM UserRole WHERE (Name='Domestic Admin' OR  Name='Admin_D')];
          
          System.debug('UserRole ID::::'+String.valueOf(r.id));
           User u1 = new User(Alias = 'newU', Email='newuser123@testorg.com',
@@ -60,10 +60,10 @@ public class AccountBranchControllerTest {
         AccountBranchFormController.getAccount(test_id1);
              AccountBranchFormController abc=new AccountBranchFormController();
              
-                Attachment attach=new Attachment();   	
-    	attach.Name='ERL';
-    	Blob bodyBlob=Blob.valueOf('Unit Test Attachment Body');
-    	attach.body=bodyBlob;
+                Attachment attach=new Attachment();     
+        attach.Name='ERL';
+        Blob bodyBlob=Blob.valueOf('Unit Test Attachment Body');
+        attach.body=bodyBlob;
         attach.parentId=acc.id;
         insert attach;
                Blob askey1 = Crypto.generateAesKey(128);

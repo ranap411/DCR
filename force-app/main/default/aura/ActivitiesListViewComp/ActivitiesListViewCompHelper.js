@@ -9,12 +9,18 @@
                 let retDatas = response.getReturnValue();
                 for (var i = 0; i < retDatas.length; i++) {
                     var retData = retDatas[i];
+                    //console.log('ppppp--'+retData.Beat_plan__c);
                     if (retData.What){
                         retData.AccountName = retData.What.Name;    
                     }
                     
                     if (retData.Owner){
                         retData.OwnerName = retData.Owner.Name;    
+                    }
+                    
+                    else if(retData.Beat_plan__c != 'undefined'){
+                        console.log('ppppp--'+retData[0].Beat_plan__c);
+                    	component.set("v.beatId",retData.Beat_plan__c);
                     }
                 }
                // console.log("RetVal-->Added Parent Prop-->"+JSON.stringify(retDatas));
@@ -97,6 +103,18 @@
         $A.enqueueAction(action);
     },
     
+    UpdateBeatPlan : function(component, event, helper){
+    	var action = component.get("c.getBeatPlan");
+        action.setParams({
+            'eventId' : component.get("v.eveId")
+        });
+        action.setCallback(this,function(response) {
+            var state = response.getState();
+            
+        });
+        $A.enqueueAction(action);    
+    },
+    
     /*
      * Show toast with provided params
      * */
@@ -125,5 +143,6 @@
     },
     hideSpinner : function(component){
         component.set("v.showSpinner",false);
-    }
+    },
+    
 })

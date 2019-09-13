@@ -4,7 +4,7 @@ public class ActivitiesListViewControllerTest {
     @TestSetup
     static void makeData(){
         Account acc=new Account(name='Account', 
-                                Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated');
+                                Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated',GSTIN_No__c='GSTIN2343423456');
         insert acc;
         
         Lead lead1=new Lead(Lastname='Lead test', 

@@ -4,6 +4,7 @@
     <aura:attribute name="prodId" type="String"/>
     <aura:attribute name="mpId" type="String"/>
     <aura:attribute name="aopId" type="String"/>
+    <aura:attribute name="aopName" type="String"/>
     <aura:attribute name="fiscalYear" type="String"/>
     <aura:attribute name="month" type="String"/>
     <aura:attribute name="prodName" type="String"/>
@@ -53,6 +54,12 @@
                         <dd class="slds-dl_horizontal__detail slds-tile__meta">
                             <a href="" onclick="{! c.onAOPQtyClick }"> <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.aopQty }</p></a>
                         </dd>
+                             <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="AOP Quantity">AOP Number:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <a href="" onclick="{! c.onAOPQtyClick }"> <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.aopName }</p></a>
+                        </dd>
                         <dt class="slds-dl_horizontal__label">
                             <p class="slds-truncate" title="Total Planned Quantity">Total Planned Qty:</p>
                         </dt>
@@ -68,7 +75,7 @@
                     </dl>
                 </lightning:tile>
                 <br/><br/>
-                <div style="width: 95%; height:95%;" class="slds-align_absolute-center slds-scrollable_x slds-scrollable_y">
+                <div  class="slds-align_absolute-center slds-scrollable_x slds-scrollable_y">
                     <table id="myTable"
                            class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered  " role="grid"
                            >

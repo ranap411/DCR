@@ -11,7 +11,7 @@
         
         
         var lettMonthVsNumMonthMap = component.get("v.textMonthVsNumMonthMap");
-        var numMonthVsLettMonthMap = component.get("v.numMonthVsTextMonthMap");
+        var numMonthVsLettMonthMap = component.get("v.monthMap");
         var tabIdVsTrueOrFalse = component.get("v.passValueMap"); // This will be used to pass value (tab vs boolean(to lock/unlock )) to helper method 
        // console.log("In SalesPLanningTurkeyComp-->C-->onActiveTabHandler_M-->tabIdVsTrueOrFalse MAp-->"+JSON.stringify(tabIdVsTrueOrFalse));
         var currMonthValueFromMap = lettMonthVsNumMonthMap[currMonth];

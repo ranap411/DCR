@@ -16,6 +16,7 @@ public class Constants {
     public static final String ACCOUNT_INDIA_COMPANYCODE = '1000';
     public static final String ACCOUNT_INDIA_COUNTRYKEY = 'IN';
     public static final String ACCOUNT_STATUS_ACTIVATED = 'Activated';
+    public static final String ACCOUNT_STATUS_DRAFT = 'Draft';
     public static final String ACCOUNT_SUBSTATUS_SUBMITTEDTOAPPROVER1 = 'Submitted To Approver 1';
     public static final String ACCOUNT_SUBSTATUS_SUBMITTEDTOAPPROVER2 = 'Submitted To Approver 2';
     public static final String ACCOUNT_SUBSTATUS_SUBMITTEDTOBRANCHTEAM = 'Submitted To Branch Team';
@@ -24,8 +25,13 @@ public class Constants {
     public static final String ACCOUNT_TRIGGER_BRANCHFIELDMANDATORYCUSTOMEXCEPTIONMESSAGE = 'Branch Field is mandatory to fill before record is approved';
     public static final String ACCOUNT_TRIGGER_ACCOUNTTEAMMANDATORYCUSTOMEXCEPTIONMESSAGE = 'Account Team record is mandatory to create before record is approved';
     public static final String ACCOUNT_TRIGGER_INT_ADMINTOFILLMANDATORYFIELDSCUSTOMEXCEPTIONMESSAGE = 'Please fill in the mandate fields under CRM Details Section';
-    public static final String ACCOUNT_INT_ADMINROLENAME = 'Admin_I';
-    public static final String ACCOUNT_TURKEY_ADMINROLENAME = 'Admin_T';
+    public static final String ACCOUNT_INT_ADMINROLENAME = 'International_Admin';
+    public static final String ACCOUNT_TURKEY_ADMINROLENAME = 'Turkey_Admin';
+    public static final String ACCOUNT_DOM_ADMINROLENAME = 'Domestic_Admin';
+    public static final String USER_USERTYPE_DOMESTIC = 'Domestic';   //Usertype picklist value on User object
+    public static final String USER_USERTYPE_TURKEY = 'Turkey';
+    public static final String USER_USERTYPE_INTERNATIONAL = 'International';
+    
     
     public static final Map<Integer,String> MONTH_VALUE_MAP = new Map<Integer,String>{9 => 'Jan',
         10 => 'Feb',

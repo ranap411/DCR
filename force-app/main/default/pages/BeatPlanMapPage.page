@@ -11,7 +11,7 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-        <style>
+<style>
             #sidebar-wrapper {
   top: 52px;
   left: -200px;
@@ -74,8 +74,8 @@
     background-color: #4169E1;
 }
 </style>
-        <script>
-            $(window).resize(function() {
+<script> 
+    $(window).resize(function() {
     var path = $(this);
     var contW = path.width();
     if(contW >= 751){
@@ -111,10 +111,11 @@ $(document).ready(function() {
 
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Salesforce Google Map</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"/>
         <script src="{!URLFOR($Resource.aljs,'/jquery.aljs-all-with-moment.min.js')}" />
         <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
         <link href = "https://code.jquery.com/ui/1.12.0/themes/ui-lightness/jquery-ui.css" rel = "stylesheet"/>
@@ -184,28 +185,28 @@ $(document).ready(function() {
                         <span class="icon-bar"></span>
                     </a>
                     <span class="navbar-brand" href="home.xhtml" style="color:white">
-                        Today Activity
+                        {!translationObject.Today_Activity__c}
                     </span>
-                    <button id='end_my_day' disabled="true" ng-click="endMyDay();" class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:4px">End</button>
-                    <button ng-click="startMyDay()" id='start_my_day' class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:3px">Start</button>
+                    <button id='end_my_day' disabled="true" ng-click="endMyDay();" class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:4px">{!translationObject.End__c}</button>
+                    <button ng-click="startMyDay()" id='start_my_day' class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:3px">{!translationObject.Start__c}</button>
                 </div>
                 <div id="sidebar-wrapper" class="sidebar-toggle" style="margin-bottom:100px;height:82%">
                      <center>
-                <h1 style="background:#ECF0F1; color:#777; height:20px ; font-size:20px; font-family:times and roman">Visits</h1>
+                <h1 style="background:#ECF0F1; color:#777; height:20px ; font-size:20px; font-family:times and roman">{!translationObject.Visits__c}</h1>
                 <div id="sortable" >
                     <dl class="dl-horizontal" ng-repeat="ev in eventList" >
                         <div class="cards" id="{{ev.Id}}" start="{{ev.StartDateTime}}" end="{{ev.EndDateTime}}">
                                 <div>
                                     <div class="test ; handle" style="float:right;color:white"></div>
                                     <center><b><span id='' style="color:white">{{ev.Account__r.Name}}</span></b></center>
-                                    <label style="color:#ECF0F1">Address :</label><span id="Address" style="color:#ECF0F1">{{ev.Account__r.BillingStreet}},{{ev.Account__r.BillingCity}}</span>
+                                    <label style="color:#ECF0F1">{!translationObject.Address__c} :</label><span id="Address" style="color:#ECF0F1">{{ev.Account__r.BillingStreet}},{{ev.Account__r.BillingCity}}</span>
                                 </div>
                             <div class="float-right">
                                 <button id="{{'_i'+ev.Id}}" class="slds-button slds-button_success" disabled="true" ng-click="checkIn(ev.Id)">
-                                    Check IN
+                                    {!translationObject.Check_IN__c}
                                 </button>
                                 <button class="slds-button slds-button_destructive" ng-click="checkOut(ev.Id)" disabled='true' id="{{'_o'+ev.Id}}">
-                                    Check Out
+                                    {!translationObject.Check_Out__c}
                                 </button>
                             </div>
                         </div>
@@ -230,13 +231,13 @@ $(document).ready(function() {
                         </svg>
                         <span class="slds-assistive-text">Close</span>
                       </button>
-                      <h2 class="slds-text-heading_medium" id="prompt-heading-id">Confirmation</h2>
+                      <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
                     </header>
                     <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
                       <p id="proMsg"></p>
                     </div>
                     <footer class="slds-modal__footer slds-theme_default">
-                      <button class="slds-button slds-button_neutral" ng-click="hidePopup('promt')">Okay</button>
+                      <button class="slds-button slds-button_neutral" ng-click="hidePopup('promt')">{!translationObject.Okay__c}</button>
                     </footer>
                   </div>
                 </section>
@@ -255,33 +256,34 @@ $(document).ready(function() {
                 </svg>
                 <span class="slds-assistive-text">Close</span>
               </button>
-              <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Update Event</h2>
+              <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!translationObject.Update_Event__c}</h2>
             </header>
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <div class="demo-only demo-only--sizing slds-grid slds-wrap">
                     <div class="slds-size_1-of-2 slds-p-around_x-small">
-                        <label class="slds-form-element__label">Start Time</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>
                         <input type="time" class="slds-input" id="startTime"/>
                         
                         <div class="slds-form-element">
                             <input type="text" style="display:none"/>
-                            <label class="slds-form-element__label" for="text-input-id-1">Date</label>
+                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Date__c}</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
-                                <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                                 </svg>
-                                <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                                <input id="clickDate" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Pick_a_Date__c}" />
                             </div>
                         </div>
+                        
                     </div>
                     <div class="slds-size_1-of-2 slds-p-around_x-small">
-                        <label class="slds-form-element__label">End Time</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>
                         <input type="time" class="slds-input" id="endTime"/> 
                         
                         <div class="slds-form-element">
-                            <label class="slds-form-element__label" for="textarea-id-01">reason</label>
+                            <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.reason__c}</label>
                             <div class="slds-form-element__control">
-                                <textarea id="reason" class="slds-textarea" placeholder="Reason"></textarea>
+                                <textarea id="reason" class="slds-textarea" placeholder="{!translationObject.reason__c}"></textarea>
                             </div>
                         </div>
 
@@ -289,9 +291,9 @@ $(document).ready(function() {
                 </div>       
             </div>
             <footer class="slds-modal__footer">
-              <button class="slds-button slds-button_neutral" id="revert" ng-click="hidePopup('eventUpdateModal')">Cancel</button>
-              <button class="slds-button slds-button_brand" ng-click="updateEvent('update')">Save</button>
-              <button class="slds-button slds-button_destructive" ng-click="updateEvent('cancel')">Cancel Event</button>
+              <button class="slds-button slds-button_neutral" id="revert" ng-click="hidePopup('eventUpdateModal')">{!translationObject.Cancel__c}</button>
+              <button class="slds-button slds-button_brand" ng-click="updateEvent('update')">{!translationObject.Save__c}</button>
+              <button class="slds-button slds-button_destructive" ng-click="updateEvent('cancel')">{!translationObject.Cancel_Event__c}</button>
             </footer>
           </div>
         </section>
@@ -309,13 +311,13 @@ $(document).ready(function() {
                 </svg>
                 <span class="slds-assistive-text">Close</span>
               </button>
-              <h2 class="slds-text-heading_medium" id="prompt-heading-id">warning</h2>
+              <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.warning__c}</h2>
             </header>
             <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
               <p id="warn"></p>
             </div>
             <footer class="slds-modal__footer slds-theme_default">
-              <button class="slds-button slds-button_neutral" ng-click="hidePopup('warning')">Okay</button>
+              <button class="slds-button slds-button_neutral" ng-click="hidePopup('warning')">{!translationObject.Okay__c}</button>
             </footer>
           </div>
         </section>
@@ -342,9 +344,6 @@ $(document).ready(function() {
             myFunc();
             console.log('in foo function ');
         }
-
-
-
         function myMap() {
             console.log('in start');
             directionsDisplay = new google.maps.DirectionsRenderer();
@@ -382,7 +381,7 @@ $(document).ready(function() {
                     locations.push([latlist[i], longlist[i]]);
                 }
 
-                acc_names.push("Your Location ");
+                acc_names.push("{!translationObject.Your_Location__c}");
                 acc_id.push('');
                 for (i = 0; i < eventList.length; i++) {
                     acc_names.push(eventList[i].Account__r.Name);
@@ -445,7 +444,9 @@ $(document).ready(function() {
                         } 
                     }  
                         if (status !== 'OK') {
-                            alert('Error was: ' + status);
+                            $scope.showPopup('warning');
+                            $('#warn').text('{!translationObject.Error_was__c}'+ status);
+                            //alert('{!translationObject.Error_was__c}: ' + status);
                         } else {
 
                         }
@@ -641,7 +642,7 @@ $(document).ready(function() {
 
             //Start My Day Method
             $scope.startMyDay = function(){
-                $('#proMsg').text('You have started your day');
+                $('#proMsg').text('{!translationObject.You_have_started_your_day__c}');
                 $scope.showPopup('promt');
                 var id = $scope.eventList[0].Id;
                 var customId = '#_i'+id;
@@ -653,7 +654,9 @@ $(document).ready(function() {
                     if(result == 'SUCCESS'){
                         foo();
                     }else{
-                        alert('There is no beat plan for today');
+                         $scope.showPopup('warning');
+                         $('#warn').text('{!translationObject.There_is_no_beat_plan_for_today__c}');
+                         //alert('{!translationObject.There_is_no_beat_plan_for_today__c}');
                     }
                 });
             }
@@ -668,15 +671,17 @@ $(document).ready(function() {
                     BeatPlanMapPageController.endMyDay($scope.jdata,function(result,event){
                         if(result == 'FAILED'){
                             $('.spinner').addClass('slds-hide');
-                            alert('Failed to end your day.');
+                            $scope.showPopup('warning');
+                            $('#warn').text('{!translationObject.Failed_to_end_your_day__c}.');
+                            //alert('{!translationObject.Failed_to_end_your_day__c}.');
                         }else{
                             $('.spinner').addClass('slds-hide');
-                            $('#proMsg').text('You have Ended your day');
+                            $('#proMsg').text('{!translationObject.You_have_Ended_your_day__c}');
                             $scope.showPopup('promt');
                         }
                     });
                 }else{
-                    $('#warn').text('You have events for visit today, Please reschedule them or cancel them.');
+                    $('#warn').text('{!translationObject.You_have_events_for_visit_today__c}');
                     $('.warning').removeClass('slds-hide');
                 }
             }
@@ -693,11 +698,13 @@ $(document).ready(function() {
                             console.log('result : ',result);
                             window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
                         }else{
-                            alert('Checkin Not available now');
+                            $scope.showPopup('warning');
+                            $('#warn').text('{!translationObject.Checkin_Not_available_now__c}');
+                            //alert('{!translationObject.Checkin_Not_available_now__c}');
                         }
                     });
                 }else{
-                    $('#warn').text('you are too far away to checkin.');
+                    $('#warn').text('{!translationObject.you_are_too_far_away_to_checkin__c}.');
                     $('.warning').removeClass('slds-hide');
                 }
             } 
@@ -723,10 +730,48 @@ $(document).ready(function() {
             }
         });    
         $(document).ready(function() {
-        
-            $('#clickDate').datepicker({
-                dateFormat: 'yy-mm-dd'
-            });
+            console.log('Datepicker','{!curentLang}');
+            /*$('#clickDate').datepicker({
+                dateFormat: 'yy-mm-dd',
+                locale:'sp'
+            });*/
+            const lang = '{!curentLang}';
+           if(lang === 'tr'){
+               console.log('in false for turkey: ');
+               $('#clickDate').datepicker({
+                   stepMinute: 5,
+                   hourMin: 6,
+                   hourMax: 21,
+                   //timeFormat: '',
+                   closeText: 'Close',
+                   currentText: 'Today',
+                   monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran', 'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+                   monthNamesShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                   dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                   dayNamesShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+                   dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                   dateFormat: 'yy-mm-dd',
+                   firstDay: 1,
+                   isRTL: false
+               });
+           }else{
+           console.log('in false for turkey: ');
+           $('#clickDate').datepicker({
+               stepMinute: 5,
+               hourMin: 6,
+               hourMax: 21,
+               //timeFormat: '',
+               closeText: 'Close',
+               currentText: 'Today',
+               monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+               monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+               dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+               dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+               dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+               dateFormat: 'yy-mm-dd',
+               firstDay: 1,
+               isRTL: false
+           });}
         });
         function setIcon(){
             setTimeout(function(){

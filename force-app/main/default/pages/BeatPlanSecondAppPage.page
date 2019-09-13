@@ -62,13 +62,13 @@
                       <svg class="slds-icon slds-icon_small" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/standard-sprite/svg/symbols.svg#customers')}"></use>
                       </svg>
-                      <span class="slds-assistive-text">Customer Details</span>
+                      <span class="slds-assistive-text">{!translationObject.Customer_Details__c}</span>
                     </span>
                   </div>
                   <div class="slds-media__body">
                     <h2 class="slds-card__header-title">
                       <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
-                        <span>Customer Details</span>
+                        <span>{!translationObject.Customer_Details__c}</span>
                       </a>
                     </h2>
                   </div>
@@ -76,11 +76,11 @@
               </div>
               <div class="slds-card__body slds-card__body_inner">
                 <dl class="slds-list_horizontal slds-wrap">
-                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">Customer Name:</dt>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">{!translationObject.Customer_Name__c}:</dt>
                   <dd class="slds-item_detail slds-truncate" title="Description for first label">{{eventData.Who.Name}}</dd>
-                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">CE Ratings:</dt>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">{!translationObject.CE_Ratings__c}:</dt>
                   <dd class="slds-item_detail slds-truncate" title="Description for first label">{{eventData.CE_Rating__c}}</dd>
-                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Customer Potential:</dt>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">{!translationObject.Customer_Potential__c}:</dt>
                   <dd class="slds-item_detail slds-truncate" title="Description for second label">{{eventData.CIS_Rating__c}}</dd>
                 </dl>
               </div>
@@ -92,7 +92,7 @@
                     <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
                     </svg>
-                    <span class="slds-truncate" title="Section Title">Last 5 Invoices Details</span>
+                    <span class="slds-truncate" title="Section Title">{!translationObject.Last_5_Invoices_Details__c}</span>
                   </button>
                 </h3>
                 <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
@@ -100,16 +100,16 @@
                     <thead>
                       <tr class="slds-line-height_reset">
                         <th class="" scope="col">
-                          <div class="slds-truncate" title="Opportunity Name">Name</div>
+                          <div class="slds-truncate" title="Opportunity Name">{!translationObject.Name__c}</div>
                         </th>
                         <th class="" scope="col">
-                          <div class="slds-truncate" title="Account Name">Product</div>
+                          <div class="slds-truncate" title="Account Name">{!translationObject.Product__c}</div>
                         </th>
                         <th class="" scope="col">
-                          <div class="slds-truncate" title="Close Date">Quantity</div>
+                          <div class="slds-truncate" title="Close Date">{!translationObject.Quantity__c}</div>
                         </th>
                         <th class="" scope="col">
-                          <div class="slds-truncate" title="Close Date">Amount</div>
+                          <div class="slds-truncate" title="Close Date">{!translationObject.Amount__c}</div>
                         </th>
                       </tr>
                     </thead>
@@ -140,25 +140,25 @@
                
                 <div class="slds-grid slds-gutter">
                     <div class="slds-col">
-                        <label class="slds-form-element__label">Subject</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Subject__c}</label><br></br>
                         <span>{{eventData.Subject}}</span><br></br>
 
                         <div class="slds-form-element slds-size_3-of-4">
                             <input type="text" style="display:none"/>
-                            <label class="slds-form-element__label" for="text-input-id-1">Follow up Date</label>
+                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Follow_up_Date__c}</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                                 <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                                 </svg>
-                                <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                                <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Pick_a_Date__c}" />
                             </div>
                         </div>
                     </div> 
                     <div class="slds-col">
-                        <label class="slds-form-element__label">Call type</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Call_type__c}</label><br></br>
                         <span>{{eventData.Call_Type__c}}</span><br></br>
                         <div class="field">
-                          <label>Product</label>
+                          <label>{!translationObject.Product__c}</label>
                           <select name="Products" class="ui fluid search dropdown" multiple="multiple" id="multi-select">
                             <option ng-repeat="pro in productList">{{pro.Name}}</option>
                           </select>  
@@ -168,9 +168,9 @@
 
                 
                 <div class="slds-form-element">
-                    <label class="slds-form-element__label" for="textarea-id-01">Remark</label>
+                    <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark__c}</label>
                     <div class="slds-form-element__control">
-                        <textarea id="remark" class="slds-textarea" placeholder="Placeholder Text"></textarea>
+                        <textarea id="remark" class="slds-textarea" placeholder="{!translationObject.Remark__c}"></textarea>
                     </div>
                 </div>
             </div>
@@ -178,10 +178,10 @@
               <!-- footer -->
               <div style="height: 180px;">
                 <div class="slds-docked-form-footer">
-                  <button type="button" class="slds-button slds-button_brand" ng-click="DCRPage()" ng-show="mainPage">DCR</button>
-                  <button type="button" class="slds-button slds-button_brand" id="saveButton" ng-show="DCR" ng-click="save()">Save</button>
-                  <button type="button" class="slds-button slds-button_brand" id="submitButton" ng-show="DCR" ng-click="submit()">Submit</button>
-                  <button type="button" class="slds-button slds-button_brand" id="checkOut" ng-click="checkOut()">CheckOut</button>
+                  <button type="button" class="slds-button slds-button_brand" ng-click="DCRPage()" ng-show="mainPage">{!translationObject.DCR__c}</button>
+                  <button type="button" class="slds-button slds-button_brand" id="saveButton" ng-show="DCR" ng-click="save()">{!translationObject.Save__c}</button>
+                  <button type="button" class="slds-button slds-button_brand" id="submitButton" ng-show="DCR" ng-click="submit()">{!translationObject.Submit__c}</button>
+                  <button type="button" class="slds-button slds-button_brand" id="checkOut" ng-click="checkOut()">{!translationObject.CheckOut__c}</button>
                 </div>
               </div>
               <!--footer ends -->
@@ -197,13 +197,14 @@
                         </svg>
                         <span class="slds-assistive-text">Close</span>
                       </button>
-                      <h2 class="slds-text-heading_medium" id="prompt-heading-id">Confirmation</h2>
+                      <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
                     </header>
                     <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
-                      <span id="proMsg"></span>
+                        <input type="hidden" id="popupHandler" value=""></input>
+                    	<span id="proMsg"></span>
                     </div>
                     <footer class="slds-modal__footer slds-theme_default">
-                      <button class="slds-button slds-button_neutral" ng-click="hidePopup('promt')">Okay</button>
+                      <button class="slds-button slds-button_neutral" ng-click="hidePopup('promt')">{!translationObject.Okay__c }</button>
                     </footer>
                   </div>
                 </section>
@@ -274,9 +275,14 @@
 
             $scope.hidePopup = function(id){
               $('.'+id).addClass('slds-hide');
+              if($('#popupHandler').val() === 'Checkout'){
+              	  $('#popupHandler').val('');	
+                  $scope.home();
+              }
+                
             }
             $scope.save = function(){
-                $('#proMsg').text('DCR is saved');
+                $('#proMsg').text('{!translationObject.DCR_is_saved__c}');
                 $('.promt').removeClass('slds-hide');
                 $('#checkOut').prop('disabled',false);
                 var proArray = $('#multi-select').val();
@@ -295,7 +301,7 @@
             $scope.submit = function(){
                 $('#submitButton').prop('disabled',true);
                 $('#saveButton').prop('disabled',true);
-                $('#proMsg').text('DCR is submitted');
+                $('#proMsg').text('{!translationObject.DCR_is_submitted__c}');
                 $('.promt').removeClass('slds-hide');
                 $('#checkOut').prop('disabled',false);
                 var proArray = $('#multi-select').val();
@@ -312,15 +318,20 @@
             }
             
             $scope.checkOut = function(){
-              alert('You have checked out');
+                //alert('{!translationObject.You_have_checked_out__c}');
               $scope.data = {"CheckOutLat":$scope.UserLocation.latitude,"CheckOutLong":$scope.UserLocation.longitude,"eventId":$scope.eventData.Id};
               BeatPlanSecondAppPageController.checkOutMethod($scope.data,function(result,event){
                 if(event.statusCode == 200){
-                  console.log('chal gya');
-                   $scope.home();
+                   $('#popupHandler').val('Checkout');
+                   $('#proMsg').text('{!translationObject.You_have_checked_out__c}');
+                   $('.promt').removeClass('slds-hide');
+                   console.log('chal gya');
+                   
                 }else{
-                  console.log('error');
-                  alert('failed to checkout..');
+                   console.log('error');
+                   $('.promt').removeClass('slds-hide');
+                   $('#proMsg').text('{!translationObject.failed_to_checkout__c}..');
+                   //alert('{!translationObject.failed_to_checkout__c}..');
                 }
                  
                 });
@@ -342,9 +353,47 @@
          
           console.log('Values on load : ', $('#multi-select').val());
           $('#multi-select').dropdown({maxSelections: 3});
-            $('#clickDate').datepicker({
+            /*$('#clickDate').datepicker({
                 dateFormat: 'yy-mm-dd'
-            });
+            });*/
+            const lang = '{!curentLang}';
+           if(lang === 'tr'){
+               console.log('in false for turkey: ');
+               $('#clickDate').datepicker({
+                   stepMinute: 5,
+                   hourMin: 6,
+                   hourMax: 21,
+                   //timeFormat: '',
+                   closeText: 'Close',
+                   currentText: 'Today',
+                   monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran', 'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+                   monthNamesShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                   dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                   dayNamesShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+                   dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                   dateFormat: 'yy-mm-dd',
+                   firstDay: 1,
+                   isRTL: false
+               });
+           }else{
+           console.log('in false for turkey: ');
+           $('#clickDate').datepicker({
+               stepMinute: 5,
+               hourMin: 6,
+               hourMax: 21,
+               //timeFormat: '',
+               closeText: 'Close',
+               currentText: 'Today',
+               monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+               monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+               dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+               dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+               dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+               dateFormat: 'yy-mm-dd',
+               firstDay: 1,
+               isRTL: false
+           });}
+
             $('#multi-select').on('change',function(){
               console.log('values of drop down : ',$('#multi-select').val());
             });

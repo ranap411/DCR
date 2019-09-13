@@ -4,7 +4,11 @@
 //Version : 1.0
 //********************/
 
-trigger SAPMappingTrigger on SAP_Line_Item__c (before insert) 
+trigger SAPMappingTrigger on SAP_Line_Item__c (before insert,after delete) 
 {
- SAPLineHandler.MapSap(trigger.new);    
+    SAPLineHandler.MapSap(trigger.new);  
+    if(Trigger.isDelete){
+        SAPLineHandler.updateActualAmtOnAOP(trigger.old);      
+    }
+    
 }

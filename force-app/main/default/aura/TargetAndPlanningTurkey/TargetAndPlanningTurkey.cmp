@@ -37,7 +37,7 @@
     <aura:attribute name="nextMonth" type="String" description="This attribute will be used in tab selection for parent component" />
     <aura:attribute name="prevMonth" type="String" description="This attribute will be used in tab selection for parent component" />
     <aura:attribute name="lockOrUnlockThisTab" type="Boolean" description="This value will be passed from parent and is used to enable or disable this tab" />
-    <aura:registerEvent name="switchTab" type="c:showTab"/><!-- THIS IS NOT USED NOW -->
+    <!--<aura:registerEvent name="switchTab" type="c:showTab"/>--><!-- THIS IS NOT USED NOW -->
     <aura:registerEvent name="switchTabIntEvt" type="c:showTabIntEvt"/>
 
     <lightning:overlayLibrary aura:id="overlayLib"/>

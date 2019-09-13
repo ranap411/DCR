@@ -24,17 +24,17 @@
         var d = new Date();
         var currDate = d.getDate();
         //console.log("In Trget&PlaningComp-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate-->"+currDate);
-        //console.log("In Trget&PlaningComp-->H-->checkLastDayForPlanningIsNotElapsed_M-->LastDate-->"+lastDay);
+       // console.log("In Trget&PlaningComp-->H-->checkLastDayForPlanningIsNotElapsed_M-->LastDate-->"+lastDay);
         var test = (currDate <= lastDay);
-        //console.log("In Trget&PlaningComp-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate <= lastDay-->"+test);
+       // console.log("In Trget&PlaningComp-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate <= lastDay-->"+test);
         if(currDate <= lastDay){
             return false;
         }else{
             return true;
         }  
     },
-   lockAllInputTextBox: function(component,event){
-       // console.log("In Trget&PlaningComp-->H-->IN lockAllInputTextBox_M !!!");
+    lockAllInputTextBox: function(component,event){
+        // console.log("In Trget&PlaningComp-->H-->IN lockAllInputTextBox_M !!!");
         var allIdsArray = component.get("v.allRowCellIds"); // Contains all HTML Ids of Input Textbox rendered on page.
         
         //var t1 = performance.now();
@@ -45,7 +45,7 @@
     },
     
     lockSavedMonthlyPlanValue : function(component, event) {
-       // console.log('In Trget&PlaningCompDom-->H--> In lockSavedMonthlyPlanValue_M !!');
+        // console.log('In Trget&PlaningCompDom-->H--> In lockSavedMonthlyPlanValue_M !!');
         var elemntMap = component.get("v.testMap");
         for (var key of Object.keys(elemntMap)) {
             if(! $A.util.isEmpty(document.getElementById(key))){
@@ -66,8 +66,9 @@
         //console.log('In Rendering Helper!');
         var elemntMap = component.get("v.testMap"); // stores existing mpp value's against Id(prod+acc+mp).
         //console.log('MPP ARRAY SIZE-->'+Object.keys(elemntMap).length);
+        //console.log('MPP ARRAY VAL-->'+JSON.stringify(elemntMap));
         //var tstMap2 = component.get("v.testMap2");
-                 
+        
         var productArray = component.get("v.totalTarget");
         
         //var tarHTMLElemIdMap = component.get("v.targetElemntHTMLIdMap"); // Contains Key--> ProdId And Value-->prodId+AopId
@@ -98,8 +99,8 @@
             if(!$A.util.isEmpty(document.getElementById(k))){
                 //document.getElementById(k).innerHTML = '';
                 if(! $A.util.isEmpty(document.getElementById(k).innerHTML)){
-                  //Added on 05042019 document.getElementById(k).innerHTML = (parseInt((document.getElementById(k).innerHTML) - parseInt(finalMap[k])).toString());   
-                  document.getElementById(k).innerHTML = 'Remaining: '+((parseInt((document.getElementById(k).innerHTML).split(":")[1]) - parseInt(finalMap[k])).toString());   
+                    //Added on 05042019 document.getElementById(k).innerHTML = (parseInt((document.getElementById(k).innerHTML) - parseInt(finalMap[k])).toString());   
+                    document.getElementById(k).innerHTML = 'Remaining: '+((parseInt((document.getElementById(k).innerHTML).split(":")[1]) - parseInt(finalMap[k])).toString());   
                 }    
             }
         }
@@ -122,31 +123,38 @@
         }
         
         */
-       /* var lastDateToPlan = component.get("v.endDayForPlanning");
+        /* var lastDateToPlan = component.get("v.endDayForPlanning");
         console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Last Date2Plan-->"+lastDateToPlan);
         var lastDatePassed = this.checkLastDayForPlanningIsNotElapsed(lastDateToPlan);
         if(lastDatePassed){
         	this.lockAllInputTextBox(component,event);    
         }*/
-
-		var lockThisTab = component.get("v.lockOrUnlockThisTab");
+        
+        var lockThisTab = component.get("v.lockOrUnlockThisTab");
         //console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Lock This Tab-->"+lockThisTab);
         if(!$A.util.isEmpty(lockThisTab)){
             var lastDateToPlan = component.get("v.endDayForPlanning");
-          //  console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Last Date2Plan-->"+lastDateToPlan);
+            //console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Last Date2Plan-->"+lastDateToPlan);
             var lastDatePassed = this.checkLastDayForPlanningIsNotElapsed(lastDateToPlan);
-         //   console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Date Elapsed?-->"+lastDatePassed);
+            //console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->Date Elapsed?-->"+lastDatePassed);
+            var monMap = component.get("v.monthMap");
+            var d = new Date();
+            var currMonth = monMap[d.getMonth()];
+            //console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->CurrMonth-->"+currMonth);
+            var passedCurrMonth = component.get("v.targetMonth");
+            //console.log("In Trget&PlaningComp-->H-->IN updateExistingMppValueOnHtmlElement_M-->passedCurrMonth-->"+passedCurrMonth);
             if(lockThisTab){
                 this.lockAllInputTextBox(component,event);    
-            }else if(lockThisTab == false && lastDatePassed == true){
+            }else if(lockThisTab == false && lastDatePassed == true && currMonth == passedCurrMonth){
                 this.lockAllInputTextBox(component,event);
             }
         }else{
+            //If lockthistab value is not there, then lock all the stuff on page.
             this.lockAllInputTextBox(component,event);       
         }
-
         
-       // this.lockSavedMonthlyPlanValue(component,event);
+        
+        // this.lockSavedMonthlyPlanValue(component,event);
         
         // component.set("v.renderingDone",false);
         
@@ -185,7 +193,7 @@
         var totalTargetValOfProd = event.currentTarget.dataset.prodtarget;
         console.log("ZZ In Target&Planning-->H-->Total Prod Target Defined-->" + JSON.stringify(totalTargetValOfProd));
         //console.log("ZZ In Target&Planning-->H-->Col ID-->" + JSON.stringify(prodDomId));
-       console.log('Qty 2 Deduct-->'+qty2Deduct);
+        console.log('Qty 2 Deduct-->'+qty2Deduct);
         if(!$A.util.isEmpty(totalTargetValOfProd)){
             if(parseInt(totalTargetValOfProd) == parseInt(qty2Deduct)){
                 document.getElementById(prodDomId).innerHTML = 0;

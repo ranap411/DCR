@@ -17,16 +17,16 @@ public class SalesManagementTriggerTest {
     public static void makeData(){
         
         
-        r =[SELECT Id,name FROM UserRole WHERE Name='NSM_OP'];
+        r =[SELECT Id,name FROM UserRole WHERE (Name='RH' OR Name='CEO_Dev_Admin' OR Name='Domestic RH') LIMIT 1];
         
-        r1 = [SELECT Id,name FROM UserRole WHERE Name='DM_D'];
+        r1 = [SELECT Id,name FROM UserRole WHERE (Name='RH' OR Name='CEO_Dev_Admin' OR Name='Domestic RH') LIMIT 1];
         
         
         //  UserRole ssd=[SELECT Id,name FROM UserRole WHERE Name='SS_T'];
         p = [SELECT Id FROM Profile WHERE Name='International Sales'];
         
         
-        r2 = [SELECT Id,name FROM UserRole WHERE Name='SH_OR'];
+        r2 = [SELECT Id,name FROM UserRole WHERE (Name='RH' OR Name='CEO_Dev_Admin' OR Name='Domestic RH') LIMIT 1];
         u3 = new User(Alias = 'newUser1', Email='newuser1@testorg.com',
                       EmailEncodingKey='UTF-8', LastName='Test user 3', LanguageLocaleKey='en_US',
                       LocaleSidKey='en_US', ProfileId = p.Id,
@@ -120,8 +120,8 @@ public class SalesManagementTriggerTest {
             srd_list3.add(srd3);
             SampleRequestProcessHandler.setApproverForSampleRequest(srd_list3);
         }
-        BiotechUtility.getTurkeyAdminUserId();
-        BiotechUtility.getIntSalesHeadId();
+        //BiotechUtility.getTurkeyAdminUserId();
+        //BiotechUtility.getIntSalesHeadId();
         
         /*   
 System.runAs(u2) {

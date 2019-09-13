@@ -10,7 +10,7 @@ public inherited sharing class AccountTeamHandler {
                     for(Account_Team__c newAccTeam : newAccTeamList){
                         Account_Team__c oldAccTeam = oldAccTeamMap.get(newAccTeam.Id);
                         if((oldAccTeam.Team_Member__c == newAccTeam.Team_Member__c) && (oldAccTeam.Account__c == newAccTeam.Account__c)){
-                            List<AccountShare>	atShareLst = [Select Id,AccountId,UserOrGroupId,AccountAccessLevel 
+                            List<AccountShare>  atShareLst = [Select Id,AccountId,UserOrGroupId,AccountAccessLevel 
                                                               From AccountShare 
                                                               Where AccountId =: oldAccTeam.Account__c
                                                               AND UserOrGroupId =: oldAccTeam.Team_Member__c  
@@ -21,7 +21,7 @@ public inherited sharing class AccountTeamHandler {
                             }
                             
                             
-                           // System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->B4UPDATE-->IF--->2UPDATELST-->'+accShareUpdLst);
+                           System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->B4UPDATE-->IF--->2UPDATELST-->'+accShareUpdLst);
                             update accShareUpdLst;
                         }else if((oldAccTeam.Team_Member__c != newAccTeam.Team_Member__c) && (oldAccTeam.Account__c == newAccTeam.Account__c)){
                            // System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->IN B4UPDATE-->ELSE IF !!!!!');
@@ -30,6 +30,7 @@ public inherited sharing class AccountTeamHandler {
                                                                From AccountShare 
                                                                Where (AccountId =: oldAccTeam.Account__c
                                                                       AND UserOrGroupId =: oldAccTeam.Team_Member__c)
+                                                               AND RowCause = 'Manual'
                                                               ]){
                                                                   accShareToDelete.add(oldAccShareObj);
                                                               }
@@ -44,8 +45,8 @@ public inherited sharing class AccountTeamHandler {
                             newAccShare.OpportunityAccessLevel = 'Read';  // This is required field  
                             accShareToInsert.add(newAccShare);
                             
-                            //System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->IN B4UPDATE-->ELSE IF-->LST2DELETE-->'+accShareToDelete);
-                            //System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->IN B4UPDATE-->ELSE IF-->LST2INSERT-->'+accShareToInsert);
+                            System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->IN B4UPDATE-->ELSE IF-->LST2DELETE-->'+accShareToDelete);
+                            System.debug('In ZZZAccTeamHandler.cls-->shareAccountWithAccTeam_M-->IN B4UPDATE-->ELSE IF-->LST2INSERT-->'+accShareToInsert);
                             delete accShareToDelete;
                             insert accShareToInsert;
                         }
@@ -57,12 +58,16 @@ public inherited sharing class AccountTeamHandler {
                     //System.debug('In ZZZ INA_UPD!!!!!');
                     List<AccountShare> accShareLst = new List<AccountShare>();
                     for(Account_Team__c accTeam : newAccTeamList){
-                        AccountShare acShare =  new AccountShare();
-                        acShare.AccountAccessLevel = ((accTeam.Account_Access__c == 'Read/Write') ? 'Edit' : 'Read');
-                        acShare.UserOrGroupId      = accTeam.Team_Member__c;
-                        acShare.AccountId          = accTeam.Account__c;
-                        acShare.OpportunityAccessLevel = 'Read';  // This is required field  
-                        accShareLst.add(acShare);
+                        if(accTeam.Member_Same_As_Account_Owner__c==false){
+                            AccountShare acShare =  new AccountShare();
+                            acShare.AccountAccessLevel = ((accTeam.Account_Access__c == 'Read/Write') ? 'Edit' : 'Read');
+                            acShare.UserOrGroupId      = accTeam.Team_Member__c;
+                            acShare.AccountId          = accTeam.Account__c;
+                            acShare.OpportunityAccessLevel = 'Read';  // This is required field
+                            //acShare.CaseAccessLevel        = 'Read';
+                            //acShare.ContactAccessLevel     = 'Read';
+                            accShareLst.add(acShare);
+                        }
                     }
                     if(! accShareLst.isEmpty()){
                         insert accShareLst;
@@ -77,6 +82,7 @@ public inherited sharing class AccountTeamHandler {
                                                       From AccountShare 
                                                       Where (AccountId =: oldAccTeam.Account__c
                                                              AND UserOrGroupId =: oldAccTeam.Team_Member__c)
+                                                      AND RowCause = 'Manual'
                                                      ]){
                                                          accShareLstToDelete.add(accShareO);
                                                      }    

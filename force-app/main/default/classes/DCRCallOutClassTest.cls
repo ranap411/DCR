@@ -37,6 +37,7 @@ public class DCRCallOutClassTest {
         accObj.City__c='mumbai';
         accObj.City_postal_code__c='400001';
         accObj.Medical_Registration_No__c = '123';
+        accObj.GSTIN_No__c='GSTIN2343423456';
         insert accObj;
 
         Test.setMock(HttpCalloutMock.Class, new DCRCallOutMockTest());

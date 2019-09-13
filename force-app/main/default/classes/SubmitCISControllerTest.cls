@@ -11,6 +11,7 @@ public class SubmitCISControllerTest {
         
         Account acc =new Account(name='Account',  Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated');
         acc.Medical_Registration_No__c = '123456789';
+        acc.GSTIN_No__c='GSTIN2343423456';
         insert acc;
         
         Customer_Evaluation__c cust_eval=new Customer_Evaluation__c(Account__c=acc.Id,Year__c='2019',Status__c='Approved');
@@ -45,6 +46,7 @@ public class SubmitCISControllerTest {
     static testmethod void test1() {   
         Account acc =new Account(name='Account',  Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated');
         acc.Medical_Registration_No__c = '123456789';
+        acc.GSTIN_No__c='GSTIN2343423456';
         insert acc;
         CIS_Header__c cis_head=new CIS_Header__c(Account__c=acc.Id,Year__c='2019',Month__c='Apr');
         insert cis_head;
@@ -53,6 +55,7 @@ public class SubmitCISControllerTest {
     static testmethod void test2() {   
         Account acc =new Account(name='Account',  Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated');
         acc.Medical_Registration_No__c = '123456789';
+        acc.GSTIN_No__c='GSTIN2343423456';
         insert acc;
         // CIS_Header__c cis_head=new CIS_Header__c(Account__c=acc.Id,Year__c='2019',Month__c='Apr');
         //insert cis_head;

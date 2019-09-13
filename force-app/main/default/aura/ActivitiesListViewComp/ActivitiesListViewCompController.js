@@ -49,7 +49,8 @@
             var changeStatus = true;
             var approvestatus = component.get("v.approvedStatusVal");
             helper.showSpinner(component);
-            helper.saveDataTable(component, event, helper,changeStatus,approvestatus);   
+            helper.saveDataTable(component, event, helper,changeStatus,approvestatus); 
+            helper.UpdateBeatPlan(component, event, helper);   
         }else{
             helper.showToast({
                 "title": "Oops, Nothing Selected!",
@@ -75,13 +76,26 @@
     },
     
     rowSelectionHandler : function (component, event, helper) {
-        /*var editedRecords =  component.find("eventDataTable").get("v.selectedRows");
-        console.log("Selected Rec-->"+JSON.stringify(editedRecords));
-        var totalRecordEdited = editedRecords.length;    
-        console.log("Selected Rec length-->"+JSON.stringify(totalRecordEdited));
         
-        var slrow2 = component.find("eventDataTable").getSelectedRows();
-        console.log("New Select-->"+JSON.stringify(slrow2));*/
+        var selectedRows = event.getParam('selectedRows');
+        console.log(selectedRows);
+        var setRows = [];
+        for(var i = 0;i<selectedRows.length; i++){
+            setRows.push(selectedRows[i].Id);
+        }
+        console.log('--setRows-'+setRows);
+        component.set("v.eveId",setRows);
+        console.log('eveId==>'+component.get("v.eveId"));
+        /*var action = component.get("c.getBeatPlan");
+        action.setParams({
+            'eventId' : setRows
+        });
+        action.setCallback(this,function(response) {
+            var state = response.getState();
+            
+        });
+        $A.enqueueAction(action);*/
+        
         
     },
     handleRowAction : function (component, event, helper) {
@@ -98,5 +112,7 @@
     },
     viewRecord : function(component, event, helper) {
 
-    }
+    },
+    
+    
 })

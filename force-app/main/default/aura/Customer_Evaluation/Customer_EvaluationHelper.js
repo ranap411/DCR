@@ -21,7 +21,7 @@
                 component.set("v.accountName", result.accountName);   
                 component.set("v.isAdmin",result.isAdmin);
                 component.set("v.account",result.acc);
-                console.log(result.recordType);
+                console.log('CE redcord Type::::'+result.recordType);
                 if(result.disableForm){
                     component.set("v.isError",true);
                 	component.set("v.errorMessage",'Record is locked due to approval');

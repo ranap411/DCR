@@ -8,7 +8,7 @@ public class AccountBranchFormController {
         
         if(String.isNotBlank(accId)){
             // Using Custom Setting to get 'AlogrithName' and 'Key' For Decryption.
-            BranchSiteEncryptAndDecryptData__c urlDataCs = BranchSiteEncryptAndDecryptData__c.getInstance('URL Data');
+            BranchSiteEncryptAndDecryptData__c urlDataCs = BranchSiteEncryptAndDecryptData__c.getInstance('URL Data'); //This cus setting name is generated while encryption in AccountTriggerHandler.cls
             String AlgoName = urlDataCs.Algorithm_Name__c;
             String base64EncodedBlobString = urlDataCs.base64EncodeKey__c;
             Blob key =  EncodingUtil.base64Decode(base64EncodedBlobString); // Converting Key to original Blob Form For Decryption
@@ -25,12 +25,42 @@ public class AccountBranchFormController {
     
     //
     @AuraEnabled
+    public Static List<Branch_Data__c> branch_details(String branchID){
+        
+   List<Branch_Data__c> BranchList=new List<Branch_Data__c>();
+  
+    
+       BranchList=[select Sales_District__c,Region_Code__c,Plant__c
+                   from Branch_Data__c 
+                   where
+                   Region_Code__c=:branchID];
+        
+        system.debug('stateList'+BranchList);
+        
+        if (BranchList.size() > 0)
+        {
+            BranchList.sort();
+            
+            for(Branch_Data__c branch : BranchList)
+            {
+                
+              // StateCodeList.add( new SelectOption(branch.Sales_District__c) );
+               // system.debug(statecodeList);
+            }  
+        }
+        
+        
+        return BranchList;
+    }
+    
+      @AuraEnabled
     public Static Account getAccount(String accId){
         return [Select Id,Name,Phone,BillingStreet, BillingCity, BillingState, BillingPostalCode,BillingCountry,Type,Company_Code__c,Customer_Account_Group__c, Customer_Group__c,Distributor_Channel__c,Industry_Key__c,Rating,Division__c,Status__c,Sub_Status__c,IsBranchedApproved__c,Account_Assignment_Group__c,Approver1_Profile_Name__c,Approver2_Profile_Name__c,City__c,
                 Company_Name__c,Contact_Person__c,Country_Key__c,Delivery_Priority__c,E_Mail__c,First_mobile_telephone_no__c,First_Telephone_No__c,GSTIN_No__c,Medical_Registration_No__c,Reconciliation_Account_GL__c,Sales_Office__c,Street_2__c,Street_3__c,Street_4__c,Street_5__c,
                 Terms_Of_Payment_Key__c,region__c,City_postal_code__c,Owner.name,Owner.Employee_Code__c,Owner.Profile.Name,Owner.UserRole.Name,SOP_B_Customer_Type__c,SOP_NB_Customer_Type__c,
                 SOP_B_Total_Customer_Mapped__c,SOP_B_Account_Overdue__c,SOP_B_Percentage_Of_Overdue__c,SOP_B_Collection_List__c,SOP_B_Overdue_Account_List__c,SOP_B_Percentage_Of_List_Overdue__c,SOP_B_Gross_Sales__c,SOP_B_GRN_Value__c,SOP_B_Percentage_Max_Limit__c,SOP_NB_Total_Customer_Mapped__c,SOP_NB_Account_Overdue__c,SOP_NB_Percentage_Of_Overdue__c,SOP_NB_Collection_List__c,SOP_NB_Overdue_Account_List__c,SOP_NB_Percentage_Of_List_Overdue__c,SOP_NB_Gross_Sales__c,SOP_NB_GRN_Value__c,SOP_NB_Percentage_Max_Limit__c,
-                Delivering_Plant__c,Pricing_Procedure_Assigned__c,Sales_District__c,Tax_Classification__c,Currency__c,Region_Code__c,No_Of_Customer_Mapped_SAP__c,No_Of_Account_Overdue__c
+                Delivering_Plant__c,Pricing_Procedure_Assigned__c,Sales_District__c,Tax_Classification__c,Currency__c,Region_Code__c,No_Of_Customer_Mapped_SAP__c,No_Of_Account_Overdue__c,region__r.name
+                
                 From Account
                 WHERE Id=: accId
                 Limit 1];
@@ -86,6 +116,99 @@ public class AccountBranchFormController {
         a.Body = EncodingUtil.base64Decode(existingBody + base64Data);
         
         update a;
+    }
+    
+    //Added for dependent picklist-- 28 May2019
+    
+    @AuraEnabled 
+    public static Map<String, List<String>> getDependentMap(sObject objDetail, string contrfieldApiName,string depfieldApiName) {
+        String controllingField = contrfieldApiName.toLowerCase();
+        String dependentField = depfieldApiName.toLowerCase();
+        
+        Map<String,List<String>> objResults = new Map<String,List<String>>();
+        
+        Schema.sObjectType objType = objDetail.getSObjectType();
+        if (objType==null){
+            return objResults;
+        }
+        
+        Map<String, Schema.SObjectField> objFieldMap = objType.getDescribe().fields.getMap();
+        
+        if (!objFieldMap.containsKey(controllingField) || !objFieldMap.containsKey(dependentField)){
+            return objResults;     
+        }
+        
+        Schema.SObjectField theField = objFieldMap.get(dependentField);
+        Schema.SObjectField ctrlField = objFieldMap.get(controllingField);
+        
+        List<Schema.PicklistEntry> contrEntries = ctrlField.getDescribe().getPicklistValues();
+        List<PicklistEntryWrapper> depEntries = wrapPicklistEntries(theField.getDescribe().getPicklistValues());
+        List<String> controllingValues = new List<String>();
+        
+        for (Schema.PicklistEntry ple : contrEntries) {
+            String label = ple.getLabel();
+            objResults.put(label, new List<String>());
+            controllingValues.add(label);
+        }
+        
+        for (PicklistEntryWrapper plew : depEntries) {
+            String label = plew.label;
+            String validForBits = base64ToBits(plew.validFor);
+            for (Integer i = 0; i < validForBits.length(); i++) {
+                String bit = validForBits.mid(i, 1);
+                if (bit == '1') {
+                    objResults.get(controllingValues.get(i)).add(label);
+                }
+            }
+        }
+        return objResults;
+    }
+    
+    public static String decimalToBinary(Integer val) {
+        String bits = '';
+        while (val > 0) {
+            Integer remainder = Math.mod(val, 2);
+            val = Integer.valueOf(Math.floor(val / 2));
+            bits = String.valueOf(remainder) + bits;
+        }
+        return bits;
+    }
+    
+    public static String base64ToBits(String validFor) {
+        if (String.isEmpty(validFor)) return '';
+        
+        String validForBits = '';
+        
+        for (Integer i = 0; i < validFor.length(); i++) {
+            String thisChar = validFor.mid(i, 1);
+            Integer val = base64Chars.indexOf(thisChar);
+            String bits = decimalToBinary(val).leftPad(6, '0');
+            validForBits += bits;
+        }
+        
+        return validForBits;
+    }
+    
+    private static final String base64Chars = '' +
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+        'abcdefghijklmnopqrstuvwxyz' +
+        '0123456789+/';
+    
+    
+    private static List<PicklistEntryWrapper> wrapPicklistEntries(List<Schema.PicklistEntry> PLEs) {
+        return (List<PicklistEntryWrapper>)
+            JSON.deserialize(JSON.serialize(PLEs), List<PicklistEntryWrapper>.class);
+    }
+    
+    public class PicklistEntryWrapper{
+        public String active {get;set;}
+        public String defaultValue {get;set;}
+        public String label {get;set;}
+        public String value {get;set;}
+        public String validFor {get;set;}
+        public PicklistEntryWrapper(){            
+        }
+        
     }
     
 }

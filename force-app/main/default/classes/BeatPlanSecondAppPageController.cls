@@ -8,13 +8,20 @@ global with sharing class BeatPlanSecondAppPageController {
     public string lastFiveInvoicesList{get;set;}
     public string productList{get;set;}
     public user userObj{get;set;}
+    public string curentLang{get;set;}
+    public DCR_Detail2_Translation__c translationObject{get;set;}
 
     //Constructor
     global BeatPlanSecondAppPageController() {
         try {
+            curentLang = UserInfo.getLanguage();
+            translationObject= DCR_Detail2_Translation__c.getValues(UserInfo.getLanguage()); 
+            if(translationObject== null){
+                translationObject= DCR_Detail2_Translation__c.getValues('en_US');
+            }
             id eventId = apexpages.currentpage().getparameters().get('id');
             System.debug('event id on page : '+eventId);
-            event eventObj = [select subject,product__c,DCR_Description__c, Call_Type__c,CE_Rating__c,CIS_Rating__c, Account__r.Name,Who.Name from event where Id=:eventId limit 1];
+            event eventObj = [select subject,toLabel(product__c),DCR_Description__c, Call_Type__c,CE_Rating__c,CIS_Rating__c, Account__r.Name,Who.Name from event where Id=:eventId limit 1];
             System.debug('event record : '+eventObj);
             String ev = JSON.serialize(eventObj);
             eventData = ev.escapeUnicode().remove('\'');
@@ -31,7 +38,7 @@ global with sharing class BeatPlanSecondAppPageController {
             }
             system.debug('Orders ANd invoices : '+lastFiveInvoicesList);
         } catch (Exception  e) {
-           System.debug('error in constructor : '+e.getMessage());
+           System.debug('error in constructor : '+e.getMessage()+' At line no : '+e.getLineNumber());
         } 
     }
 

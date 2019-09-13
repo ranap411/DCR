@@ -42,20 +42,13 @@ public class CustomerEvaluationControllerTest {
          
      }
      
-     /* This method should not be in this class. This is creating unnecessary dependency with BiotechUtility class.
+    // This method should not be in this class. This is creating unnecessary dependency with BiotechUtility class.
      static testmethod void test1() { 
        
          string before = 'Testing base 64 encode';            
          Blob beforeblob = Blob.valueOf(before);
          
-         BiotechUtility.encryptData(beforeblob);
-         BiotechUtility.decryptData(beforeblob);
-         BiotechUtility.getPicklistValues('Account','Country_Key__c');
-         BiotechUtility.getEmailByBranchLocation('Mumbai');
-         BiotechUtility.getIntSalesHeadId();
-         BiotechUtility.getIntAdminUserId();
-         BiotechUtility.getTurkeyAdminUserId();
          
      }
-     */
+    
 }

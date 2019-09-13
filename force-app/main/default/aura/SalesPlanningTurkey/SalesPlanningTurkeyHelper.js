@@ -28,52 +28,52 @@
         switch (tab.get('v.id')) {
             case 'Apr' :
                 var tabToLock = tabToLockOrUnlockMap['Apr'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Apr', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Apr', lastDayForPlanning, tabToLock);
                 break;
             case 'May' :
                 var tabToLock = tabToLockOrUnlockMap['May'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'May', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'May', lastDayForPlanning, tabToLock);
                 break;
             case 'Jun' :
                 var tabToLock = tabToLockOrUnlockMap['Jun'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Jun', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Jun', lastDayForPlanning, tabToLock);
                 break;
             case 'Jul' :
                 var tabToLock = tabToLockOrUnlockMap['Jul'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Jul', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Jul', lastDayForPlanning, tabToLock);
                 break;
             case 'Aug' :
                 var tabToLock = tabToLockOrUnlockMap['Aug'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Aug', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Aug', lastDayForPlanning, tabToLock);
                 break;
             case 'Sep' :
                 var tabToLock = tabToLockOrUnlockMap['Sep'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Sep', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Sep', lastDayForPlanning, tabToLock);
                 break;
             case 'Oct' :
                 var tabToLock = tabToLockOrUnlockMap['Oct'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Oct', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Oct', lastDayForPlanning, tabToLock);
                 break;  
             case 'Nov' :
                 var tabToLock = tabToLockOrUnlockMap['Nov'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Nov', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Nov', lastDayForPlanning, tabToLock);
                 break;  
             case 'Dec' :
                 var tabToLock = tabToLockOrUnlockMap['Dec'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Dec', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Dec', lastDayForPlanning, tabToLock);
                 break;  
             case 'Jan' :
                 var tabToLock = tabToLockOrUnlockMap['Jan'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Jan', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Jan', lastDayForPlanning, tabToLock);
                 break; 
             case 'Feb' :
                 var tabToLock = tabToLockOrUnlockMap['Feb'];
-                this.injectComponent('c:TargetAndPlanning', tab, 'Feb', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Feb', lastDayForPlanning, tabToLock);
                 break;  
             case 'Mar' :
                 var tabToLock = tabToLockOrUnlockMap['Mar'];
                 //console.log("In SalesPLanningTurkeyComp-->H-->handleActive_M-->tabToLock???-->"+tabToLock);
-                this.injectComponent('c:TargetAndPlanning', tab, 'Mar', lastDayForPlanning, tabToLock);
+                this.injectComponent('c:TargetAndPlanningTurkey', tab, 'Mar', lastDayForPlanning, tabToLock);
                 break;  
                 
         }

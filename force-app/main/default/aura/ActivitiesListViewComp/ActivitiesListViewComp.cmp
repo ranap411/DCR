@@ -2,6 +2,8 @@
     <aura:attribute name="data" type="Object"/>
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="eveId" type="String"/>
+    <aura:attribute name="beatId" type="list"/>
     <!-- This attribute will hold the update records from data table-->
     <aura:attribute name="updatedRecord" type="Object[]" />
     <aura:attribute name="approvedStatusVal" type="String" default="Approved" />

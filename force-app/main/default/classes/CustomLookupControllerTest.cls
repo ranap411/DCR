@@ -6,6 +6,7 @@ public class CustomLookupControllerTest {
         
         Account acc = new Account();
         acc.name='Test';
+        acc.GSTIN_No__c='GSTIN2343423456';
         insert acc;
         
         CustomLookupController lookUpController = new CustomLookupController();

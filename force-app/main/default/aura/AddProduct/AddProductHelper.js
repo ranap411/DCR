@@ -206,6 +206,7 @@
                 //console.log("FROM APEX-->RCVD EVENTS-->"+JSON.stringify(response.getReturnValue()));
                 var prodIdVsProdDetailMap = component.get("v.prodIdVsProdDataMap");
                 let retDatas = response.getReturnValue();
+                
                 for (var i = 0; i < retDatas.length; i++) {
                     prodIdVsProdDetailMap[retDatas[i].Id] = retDatas[i]; //storing data in Map as ProdId Vs ProdData
                 }

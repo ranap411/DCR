@@ -7,14 +7,22 @@ global with sharing class BeatPlanMapPageController {
     global string eventList{get;set;}
     global beat_Plan__c beatObj{get;set;}
     global string checkinMapping{get;set;}
+    global string curentLang {get;set;}
+    global DCR_Detail1_Translation__c translationObject{get;set;}
 
     //Constructor
     global BeatPlanMapPageController(){
         try{
+            curentLang = UserInfo.getLanguage();
+            translationObject= DCR_Detail1_Translation__c.getValues(UserInfo.getLanguage()); 
+            if(translationObject== null){
+                translationObject= DCR_Detail1_Translation__c.getValues('en_US');
+            }
             list<Check_In_Setting__c> checkinList = Check_In_Setting__c.getAll().values();
             if(!checkinList.isEmpty()){
                 checkinMapping = JSON.serialize(checkinList);
             }
+            system.debug(UserInfo.getUserId());
             beatObj = [select name, Started__c,ended__c,id from beat_Plan__c where beat_Date__c =: date.today() AND Assigned_To__c = :UserInfo.getUserId()];
             system.debug('beat Object : '+beatObj);
             if(beatObj !=null){
@@ -23,13 +31,14 @@ global with sharing class BeatPlanMapPageController {
                 list<event> eventData = [select id, subject,Cheked_In__c, StartDateTime,Check_Out__c, EndDateTime, Event_Latitude__c, Event_Longitude__c, Account__r.RecordType.DeveloperName,
                                             Account__r.Name, Account__r.BillingStreet, Account__r.BillingCity,Beat_Plan__c,Out_Of_Office__c from event where Beat_Plan__c = :beatId AND
                                              Check_Out__c != true AND Account__c !=null AND Status__c !='Cancelled' order by StartDateTime  ASC];
-            	System.debug('event list : '+eventData.size());
+                System.debug('event list : '+eventData.size());
                 if(!eventData.isempty()){
                     string eventString = json.serialize(eventData);
                     eventList = eventString.escapeUnicode().remove('\'');
                 }
             }
             system.debug('event list as string : '+eventList);
+                        
         }catch(exception e){
             system.debug('error in beat plan constructor : '+e.getMessage()+', at line no : '+e.getLineNumber());
         }
@@ -154,7 +163,8 @@ global with sharing class BeatPlanMapPageController {
             date evdate = date.newInstance(integer.valueOf(dateArr[0]), integer.valueOf(dateArr[1]), integer.valueOf(dateArr[2]));
             time startTime = time.newInstance(integer.valueOf(startTimeArr[0]), integer.valueOf(startTimeArr[1]), 0, 0);
             time endtime = time.newInstance(integer.valueOf(endTimeArr[0]), integer.valueOf(endTimeArr[1]), 0, 0);
-            eventObj.StartDateTime = datetime.newInstance(evdate, startTime).addMinutes(330);
+            eventObj.StartDateTime = datetime.newInstance(evdate, startTime);
+            eventObj.EnddateTIme = datetime.newInstance(evdate, endtime);
             eventObj.Update_Reason__c = String.valueOf(mapData.get('reason'));
             eventObj.Visit_date__c = evdate;
             if(info == 'cancel'){
@@ -167,5 +177,10 @@ global with sharing class BeatPlanMapPageController {
             return e.getMessage();
         }
         return 'SUCCESS';
+    }
+    
+    @RemoteAction
+    global static string GetBasicUrl(){
+        return URL.getSalesforceBaseUrl().toExternalForm();
     }
 }

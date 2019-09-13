@@ -13,19 +13,19 @@
         var lettMonthVsNumMonthMap = component.get("v.textMonthVsNumMonthMap");
         var numMonthVsLettMonthMap = component.get("v.numMonthVsTextMonthMap");
         var tabIdVsTrueOrFalse = component.get("v.passValueMap"); // This will be used to pass value (tab vs boolean(to lock/unlock )) to helper method 
-        console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->tabIdVsTrueOrFalse MAp-->"+JSON.stringify(tabIdVsTrueOrFalse));
+        //console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->tabIdVsTrueOrFalse MAp-->"+JSON.stringify(tabIdVsTrueOrFalse));
         var currMonthValueFromMap = lettMonthVsNumMonthMap[currMonth];
-        console.log(currMonthValueFromMap)
+        //console.log(currMonthValueFromMap)
         for(let key in Object.keys(lettMonthVsNumMonthMap)){
             if( key >= currMonthValueFromMap){
-                console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key >= -->key-->"+key);
-                console.log('key >= -->numMonthVsLettMonthMap[key]-->'+numMonthVsLettMonthMap[key]);
+                //console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key >= -->key-->"+key);
+                //console.log('key >= -->numMonthVsLettMonthMap[key]-->'+numMonthVsLettMonthMap[key]);
                 tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]] = false;
-                console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key >= -->tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]]-->"+tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]]);
+                //console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key >= -->tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]]-->"+tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]]);
                 //console.log(tabIdVsTrueOrFalse);
                 //console.log(key);
             }else if(key < currMonthValueFromMap ){
-                console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key < --> key-->"+key);
+                //console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->key < --> key-->"+key);
                 //console.log(numMonthVsLettMonthMap[key]);
                 tabIdVsTrueOrFalse[numMonthVsLettMonthMap[key]] = true;
                 //console.log("In SalesPLanningINt-->C-->onActiveTabHandler_M-->Key-->"+key);

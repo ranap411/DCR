@@ -56,8 +56,8 @@
     },
     doInit: function(component, event, helper) {
         if(navigator.onLine){
-                console.log("In Target&PlaningComp-->C-->In doInit_M!!!!-->Internet-->Connected!");
-                /*helper.showToast({
+            console.log("In Target&PlaningComp-->C-->In doInit_M!!!!-->Internet-->Connected!");
+            /*helper.showToast({
                             "title": "Success!!",
                             "type": "success",
                             "message": "You are online. "
@@ -70,7 +70,7 @@
                             "message": "Check Internet Connection."
                         });*/
         }
-     
+        
         helper.showSpinner(component, event);
         
         var passedMonth = component.get("v.targetMonth");
@@ -350,7 +350,14 @@
         console.log("In Targt&PlaningDOM-->C-->onInputChange_M-->acc SAPCODE->" + JSON.stringify(accSAPCode)); 
         
         var prodCode = event.currentTarget.dataset.prodcode;
-        console.log("In Targt&PlaningDOM-->C-->onInputChange_M-->prod CODE->" + JSON.stringify(prodCode)); 
+        console.log("In Targt&PlaningDOM-->C-->onInputChange_M-->prod CODE->" + JSON.stringify(prodCode));
+        
+        var accStatus = event.currentTarget.dataset.accstatus;
+        console.log("In Targt&PlaningDOM-->C-->onInputChange_M-->acc STATUS->" + JSON.stringify(accStatus));
+        
+        var accTempId = event.currentTarget.dataset.acctempid;
+        console.log("In Targt&PlaningDOM-->C-->onInputChange_M-->acc TEMP ID->" + JSON.stringify(accTempId));
+        
         
         if(val < 0){
             event.target.value = 0; // set current cell value to 0.
@@ -368,19 +375,37 @@
             //console.log('In Targt&PlaningDOM-->C-->onInputChange_M-->Inside VAL!!!');
             var mppArrayList = component.get("v.mpps");
             
-            var newObj = {
-                Month__c: currMonth,
-                Year__c: currYear,
-                User__c: ownerId, //account owner
-                Product__c:prodId,
-                Planned_Quantity__c:val,
-                Monthly_Plan__c:mpID,
-                Monthly_Target__c:aopRecordId,
-                Financial_Year_Date__c:finYearDate,
-                MPP_Mapping__c:currMonth+currYear+prodCode+accSAPCode,
-                AccountId : accId,
-                Time: Date.now()
-            }
+            if(accStatus == 'Draft'){
+                var newObj = {
+                    Month__c: currMonth,
+                    Year__c: currYear,
+                    User__c: ownerId, //account owner
+                    Product__c:prodId,
+                    Planned_Quantity__c:val,
+                    Monthly_Plan__c:mpID,
+                    Monthly_Target__c:aopRecordId,
+                    Financial_Year_Date__c:finYearDate,
+                    MPP_Mapping__c:currMonth+currYear+prodCode+accTempId,
+                    AccountId : accId,
+                    Time: Date.now()
+                } 
+            }else{
+                  // For Activated Account
+                    var newObj = {
+                        Month__c: currMonth,
+                        Year__c: currYear,
+                        User__c: ownerId, //account owner
+                        Product__c:prodId,
+                        Planned_Quantity__c:val,
+                        Monthly_Plan__c:mpID,
+                        Monthly_Target__c:aopRecordId,
+                        Financial_Year_Date__c:finYearDate,
+                        MPP_Mapping__c:currMonth+currYear+prodCode+accSAPCode,
+                        AccountId : accId,
+                        Time: Date.now()
+                    }
+             }
+
             console.log('In Targt&PlaningDOM-->C-->onInputChange_M-->NEW OBJ-->'+JSON.stringify(newObj));
             //console.log('In INPUTCHANGE CURRENT CELL VALUE-->'+event.target.value);
             
@@ -676,7 +701,7 @@
                         helper.lockSavedMonthlyPlanValue(component, event);
                     }), 50);*/
                 
-                 var cmpEvent = component.getEvent("switchTabIntEvt");
+                var cmpEvent = component.getEvent("switchTabIntEvt");
                 cmpEvent.setParams({
                     nextTab : component.get("v.nextMonth"),
                     currentTab : component.get("v.targetMonth")

@@ -330,6 +330,7 @@ public class SubmitCISController {
             this.value = value;
             
             this.validForOptions = validForOptions;
+            
         }
     }
     

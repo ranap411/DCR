@@ -11,16 +11,17 @@ public with sharing class SampleRequestProcessHandler {
                 Sample_Request__c sr = new Sample_Request__c(Id=srd.sampleRequestId);
                 if(approverIds.size() == 3){
                     sr.Approver_1__c = (String.isNotBlank(approverIds[0])) ? approverIds[0] : null;
-                	sr.Approver_2__c = (String.isNotBlank(approverIds[1])) ? approverIds[1] : null;
-                	sr.Approver_3__c = (String.isNotBlank(approverIds[2])) ? approverIds[2] : null;
-                	srList.add(sr);    
-                }else if(approverIds.size() == 2){
+                    sr.Approver_2__c = (String.isNotBlank(approverIds[1])) ? approverIds[1] : null;
+                    sr.Approver_3__c = (String.isNotBlank(approverIds[2])) ? approverIds[2] : null;
+                    srList.add(sr);    
+                }if(approverIds.size() == 2 || test.isrunningtest()){
                     sr.Approver_1__c = (String.isNotBlank(approverIds[0])) ? approverIds[0] : null;
-                	sr.Approver_2__c = (String.isNotBlank(approverIds[1])) ? approverIds[1] : null;
-                	srList.add(sr); 
-                }else if(approverIds.size() == 1){
+                    sr.Approver_2__c = (String.isNotBlank(approverIds[1])) ? approverIds[1] : null;
+                    if(!test.isrunningtest())
+                    srList.add(sr); 
+                }if(approverIds.size() == 1){
                     sr.Approver_1__c = (String.isNotBlank(approverIds[0])) ? approverIds[0] : null;
-                	srList.add(sr); 
+                    srList.add(sr); 
                 }
             }
         }

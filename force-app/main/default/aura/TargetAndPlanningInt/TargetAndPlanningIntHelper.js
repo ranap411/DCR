@@ -35,7 +35,7 @@
     },
     
     lockSavedMonthlyPlanValue : function(component, event) {
-        console.log("In Trget&PlaningCompInt-->H-->lockSavedMonthlyPlanValue_M ! -->for COMP-->"+component.get("v.targetMonth"));
+        ///console.log("In Trget&PlaningCompInt-->H-->lockSavedMonthlyPlanValue_M ! -->for COMP-->"+component.get("v.targetMonth"));
         var elemntMap = component.get("v.existingMppEachCellQtyMap");
         for (var key of Object.keys(elemntMap)) {
             if(! $A.util.isEmpty(document.getElementById(key))){
@@ -44,7 +44,7 @@
         }
     },
     unlockSavedMonthlyPlanValue : function(component, event) {
-        console.log("In Trget&PlaningCompInt-->H-->unlockSavedMonthlyPlanValue_M !!");
+        //console.log("In Trget&PlaningCompInt-->H-->unlockSavedMonthlyPlanValue_M !!");
         var elemntMap = component.get("v.existingMppEachCellQtyMap");
         for (var key of Object.keys(elemntMap)) {
             if(! $A.util.isEmpty(document.getElementById(key))){
@@ -53,7 +53,7 @@
         }
     },
     lockAllInputTextBox: function(component,event){
-        console.log("In Trget&PlaningCompINT-->H-->IN lockAllInputTextBox_M !!!");
+        //console.log("In Trget&PlaningCompINT-->H-->IN lockAllInputTextBox_M !!!");
         var allIdsArray = component.get("v.allRowCellIds"); // Contains all HTML Ids of Input Textbox rendered on page.
         
         //var t1 = performance.now();
@@ -66,10 +66,10 @@
     checkLastDayForPlanningIsNotElapsed : function(lastDay){
         var d = new Date();
         var currDate = d.getDate();
-        console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate-->"+currDate);
-        console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->LastDate-->"+lastDay);
+        //console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate-->"+currDate);
+        //console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->LastDate-->"+lastDay);
         var test = (currDate <= lastDay);
-        console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate <= lastDay-->"+test);
+        //console.log("In Trget&PlaningCompINT-->H-->checkLastDayForPlanningIsNotElapsed_M-->currDate <= lastDay-->"+test);
         if(currDate <= lastDay){
             return false;
         }else{
@@ -234,12 +234,12 @@
         }*/
         
         var lockThisTab = component.get("v.lockOrUnlockThisTab");
-        console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Lock This Tab-->"+lockThisTab);
+        //console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Lock This Tab-->"+lockThisTab);
         if(!$A.util.isEmpty(lockThisTab)){
             var lastDateToPlan = component.get("v.endDay");
-            console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Last Date2Plan-->"+lastDateToPlan);
+            //console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Last Date2Plan-->"+lastDateToPlan);
             var lastDatePassed = this.checkLastDayForPlanningIsNotElapsed(lastDateToPlan);
-            console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Date Elapsed?-->"+lastDatePassed);
+            //console.log("In Trget&PlaningCompINT-->H-->IN updateExistingMppValueOnHtmlElement_M-->Date Elapsed?-->"+lastDatePassed);
             if(lockThisTab){
                 this.lockAllInputTextBox(component,event);    
             }else if(lockThisTab == false && lastDatePassed == true){
@@ -411,7 +411,7 @@
     },
     
     getProductAndAnnualAop : function(component,event){
-        //console.log("In Trget&PlaningCompINT-->H-->getProductAndAnnualAop_M ! for COMP-->"+component.get("v.targetMonth"));
+        console.log("In Trget&PlaningCompINT-->H-->getProductAndAnnualAop_M ! for COMP-->"+component.get("v.targetMonth"));
         //Getting  Columns 
         var action = component.get("c.getTargetAmountByUserDivision");
         action.setParams({
@@ -425,7 +425,7 @@
                 this.hideSpinner(component, event);
                 var retData = response.getReturnValue();
                 
-                //console.log("In Trget&PlaningCompINT-->C-->doInit_M--> PRODUCTS-->" +JSON.stringify(retData));
+                //console.log("In Trget&PlaningCompINT-->H-->getProductAndAnnualAop_M-->APEX RESP--> PRODUCTS-->" +JSON.stringify(retData));
                 
                 if (!$A.util.isEmpty(retData)) {
                     component.set("v.target", retData);
@@ -472,6 +472,8 @@
                         "message": "No Product found. "
                     });
                 }
+            }else{
+                console.log("In Trget&PlaningCompINT-->H-->getProductAndAnnualAop_M-->APEX Error!!");
             }
         });
         

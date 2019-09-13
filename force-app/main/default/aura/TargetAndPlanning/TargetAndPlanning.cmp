@@ -37,7 +37,7 @@
     <aura:attribute name="nextMonth" type="String" description="This attribute will be used in tab selection for parent component" />
     <aura:attribute name="prevMonth" type="String" description="This attribute will be used in tab selection for parent component" />
     <aura:attribute name="lockOrUnlockThisTab" type="Boolean" description="This value will be passed from parent and is used to enable or disable this tab" />
-    <aura:registerEvent name="switchTab" type="c:showTab"/><!-- THIS IS NOT USED NOW -->
+    <!--<aura:registerEvent name="switchTab" type="c:showTab"/>--><!-- THIS IS NOT USED NOW -->
     <aura:registerEvent name="switchTabIntEvt" type="c:showTabIntEvt"/>
 
     <lightning:overlayLibrary aura:id="overlayLib"/>
@@ -104,7 +104,7 @@
                           
                                 <aura:iteration items="{! v.target }" var="prod" indexVar="index">
                                     <td role="gridcell" >
-                                        <input type="number" min="0" id="{! prod.Id+' '+mp.Account__c+' '+mp.Id}" class="slds-input slds-truncate" data-prodtarget="{! prod.Monthly_AOP__r[0].Target_Quantity__c }" data-prodaopid="{! prod.Monthly_AOP__r[0].Id}" data-index="{!index}" data-prodid="{!prod.Id}" data-prodname="{!prod.Name}" data-accid="{! mp.Account__r.Id }" data-mpid="{! mp.Id }" data-mpname="{! mp.Name }" data-month="{! mp.Month__c }" data-year="{! mp.Year__c }" data-ownerid="{! mp.Account__r.OwnerId }" data-finyeardate="{! mp.Financial_Year_Date__c }" data-accsapcode="{! mp.Account__r.SAP_Code__c}" data-prodcode="{! prod.Dummy_Product_Code__c}" onchange ="{! c.onInputChange }" />
+                                        <input type="number" min="0" id="{! prod.Id+' '+mp.Account__c+' '+mp.Id}" class="slds-input slds-truncate" data-prodtarget="{! prod.Monthly_AOP__r[0].Target_Quantity__c }" data-prodaopid="{! prod.Monthly_AOP__r[0].Id}" data-index="{!index}" data-prodid="{!prod.Id}" data-prodname="{!prod.Name}" data-accid="{! mp.Account__r.Id }" data-mpid="{! mp.Id }" data-mpname="{! mp.Name }" data-month="{! mp.Month__c }" data-year="{! mp.Year__c }" data-ownerid="{! mp.Account__r.OwnerId }" data-finyeardate="{! mp.Financial_Year_Date__c }" data-accsapcode="{! mp.Account__r.SAP_Code__c}" data-prodcode="{! prod.Dummy_Product_Code__c}" data-accstatus="{! mp.Account__r.Status__c}" data-acctempid="{! mp.Account__r.Temprary_Id__c}" onchange ="{! c.onInputChange }" />
                                     </td>
                                 </aura:iteration>
                                 

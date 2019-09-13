@@ -122,7 +122,7 @@
             if(state === 'SUCCESS'){
                 helper.hideSpinner(component, event);
                 var retVal =  response.getReturnValue();
-                //console.log('ZZ Return Val-->'+JSON.stringify(retVal));                
+               // console.log('ZZ Return Val-->'+JSON.stringify(retVal));                
                 component.set("v.acc",retVal);
                 
                 
@@ -196,7 +196,7 @@
                 //console.log("ZZZZZZZZZZZZ cusType1 Node VAL-------->"+component.find("cusType1").get("v.value"));
                 //console.log("ZZZZZZZZZZZZ cusType2 Node VAL-------->"+component.find("cusType2").get("v.value"));
                 
-                
+                console.log("ZZZZZ delPlant::::"+component.get("v.acc.Delivering_Plant__c"));
                 component.set("v.distChan",component.get("v.acc.Distributor_Channel__c"));
                 component.set("v.cusAccGrp",component.get("v.acc.Customer_Account_Group__c"));
                 component.set("v.cusGrp",component.get("v.acc.Customer_Group__c"));
@@ -207,8 +207,9 @@
                 component.set("v.salesDistrict",component.get("v.acc.Sales_District__c"));
                 component.set("v.delPlant",component.get("v.acc.Delivering_Plant__c"));
                 component.set("v.regionCode",component.get("v.acc.Region_Code__c"));
+                component.set("v.branch",component.get("v.acc.region__r.Name"));
                 
-                
+              //  alert("branch::::"+component.get("branch"));
                 helper.onTotalCusMapChangeH(component, event);
                 helper.onAccOverdueChangeH(component, event);
                 helper.onCollectionListChangeH(component, event);
@@ -216,19 +217,63 @@
                 helper.onGrossSalesChangeH(component, event);
                 helper.onGRNValChangeH(component, event);
                 helper.onMaxLmtChangeH(component, event);
-
+ console.log("In region name-->"+component.get("v.acc.region__r.Name"));
+                
+                 var a = component.get('c.get_branch_details');
+       			 $A.enqueueAction(a);
                 
             }else{
                 helper.hideSpinner(component,event);
                 alert('Error-->'+JSON.stringify(response.getError()));
             }
         });
-        $A.enqueueAction(action);	
+       $A.enqueueAction(action);	
+        
         
         //$A.enqueueAction(component.get('c.onTotalCusMapChange'));
         
-        
     },
+      get_branch_details : function(component, event, helper) {
+        helper.showSpinner(component, event);
+        var branch=component.get("v.regionCode");
+         console.log("ZZZZZ branch1111::::"+branch);
+  		  var action1 = component.get("c.branch_details");
+        action1.setParams({
+            "branchID" : branch
+        });
+        action1.setCallback(this,function(response){
+            var state = response.getState() ;
+            if(state === 'SUCCESS'){
+                helper.hideSpinner(component, event);
+                var retVal =  response.getReturnValue();
+                var opts = [];
+                var opts1 = [];
+              console.log('ZZ Return Val-->'+retVal);  
+                //var obj = JSON.parse(retVal);
+                
+           
+
+               
+                 for (var i = 0; i < retVal.length; i++) {
+                     console.log('ZZ Return Val111-->'+retVal[i].Sales_District__c);  
+                    opts.push({
+                        class: "optionClass",
+                        label: retVal[i].Sales_District__c,
+                        value: retVal[i].Sales_District__c
+                    });
+                     opts1.push({
+                        class: "optionClass",
+                        label: retVal[i].Plant__c,
+                        value: retVal[i].Plant__c
+                    });
+                }
+                console.log('ZZ Return Val222-->'+ opts	);  
+                component.set("v.salesDistrictPKVL",opts);
+                component.set("v.delPlantPKVL",opts1);
+            }
+              });
+        $A.enqueueAction(action1);	
+      },
     handleIdChange : function(component, event, helper) {
         console.log("numItems has changed");
         console.log("old value: " + event.getParam("oldValue"));

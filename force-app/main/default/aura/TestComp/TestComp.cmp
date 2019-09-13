@@ -17,7 +17,7 @@
                 <aura:iteration items="{! v.product }" var="prod" indexVar="ind">
                     <tr class="slds-hint-parent" >
                         <td data-label="Product Name" role="gridcell">
-                            <div title="">{! ind}{! prod.Division__c }</div>
+                            <div title="">{! prod.Name }</div>
                         </td>
                         
                       <td data-label="Product Name" role="gridcell">

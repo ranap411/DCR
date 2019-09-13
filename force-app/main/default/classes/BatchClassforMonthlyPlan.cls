@@ -12,8 +12,8 @@ global class BatchClassforMonthlyPlan implements Database.Batchable<sObject>,Dat
         //string query = 'Select Id, Name, Account__c, Month__c, Financial_Year__c, Year__c, Last_Year_Monthly_Plan__c, Account__r.Status__c, Account__r.SAP_Code__c, Account__r.RecordType.DeveloperName  From Monthly_Plan__c Where Financial_Year__c=\''+fisYear+'\' AND Account__r.Status__c=\'Activated\'  AND (Account__r.RecordType.DeveloperName=\''+Constants.ACCOUNT_Customers_RECORDTYPEDEVELOPERNAME+'\' OR Account__r.RecordType.DeveloperName=\''+Constants.ACCOUNT_Distributor_RECORDTYPEDEVELOPERNAME+'\' OR Account__r.RecordType.DeveloperName=\''+Constants.ACCOUNT_B2B2C_RECORDTYPEDEVELOPERNAME+'\' )';
         Set<String> accRecordTypeDevName = new Set<String>{Constants.ACCOUNT_DOM_DISTRIBUTOR_RECORDTYPEDEVELOPERNAME,Constants.ACCOUNT_DOM_DOCTOR_RECORDTYPEDEVELOPERNAME,Constants.ACCOUNT_TURKEY_DISTRIBUTOR_RECORDTYPEDEVELOPERNAME,Constants.ACCOUNT_TURKEY_DOCTOR_RECORDTYPEDEVELOPERNAME,Constants.ACCOUNT_OPTHALMICVISION_RECORDTYPE_DEVELOPERNAME,Constants.ACCOUNT_ORTHODERMAL_RECORDTYPE_DEVELOPERNAME};
         String query = 'Select Id,Name,SAP_Code__c,Status__c,RecordType.DeveloperName, (Select Id, Name, Month__c, Financial_Year__c, Year__c, Last_Year_Monthly_Plan__c, Account__c, Account__r.SAP_Code__c  From Monthly_Plans__r Where (Financial_Year__c = \''+fisYear+'\' AND Financial_Year__c != null) ) From Account Where Status__c = \'Activated\' AND Id IN (Select Account__c From Monthly_Plan__c Where (Financial_Year__c = \''+fisYear+'\' AND Financial_Year__c != null )  ) AND RecordType.DeveloperName IN : accRecordTypeDevName';
-        system.debug('In ZZZ BatchClassforMonthlyPlan.cls-->Start_M-->Query-->'+query);
-        system.debug('In ZZZ BatchClassforMonthlyPlan.cls-->IN START_M-->Str FISYEAR->+'+fisYear);
+        //system.debug('In ZZZ BatchClassforMonthlyPlan.cls-->Start_M-->Query-->'+query);
+        //system.debug('In ZZZ BatchClassforMonthlyPlan.cls-->IN START_M-->Str FISYEAR->+'+fisYear);
         return Database.getQueryLocator(query);
         
     }
@@ -40,6 +40,7 @@ global class BatchClassforMonthlyPlan implements Database.Batchable<sObject>,Dat
                mpcr.isFromBatch = true;
                mpcr.previousFiscalYear = fisYear; //Current FiscalYear - 1
                mpcr.mPlanList = accAndItsMP.get(accId);
+               mpcr.accountStatus = ''; //Added on 24042019
                mpcrList.add(mpcr);
         }
      

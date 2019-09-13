@@ -16,6 +16,8 @@
         <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js" />
+     <!--   <script src="https://fullcalendar.io/releases/fullcalendar/3.10.0/locale-all.js" /> -->
+        <script src="{!URLFOR($Resource.locale)}"/>
         <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
@@ -121,17 +123,17 @@
                       <div class="slds-form-element__control">
                         <div class="slds-select_container">
                           <select class="slds-select" id="user">
-                            <option value="">Select user</option>
-                            <option id="{!userObj.Id}">My View({!userObj.Name})</option>
+                            <option value="">{!translationObject.user__c}</option>
+                            <option id="{!userObj.Id}">{!userObj.Name}</option>
                             <option ng-repeat="mg in managerList" id="{{mg.Id}}">{{mg.Name}}</option> 
                           </select>
                         </div>
                       </div>
                     </div>
             
-                 <h1 class="slds-align_absolute-center" style="font-size:20px;color:white;margin-top:-28px">Visit Calendar</h1>
-                  <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:8px' ng-click="next()">Save Calendar</button>
-                  <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:8px' ng-click="refreshPage()">Cancel</button>
+                 <h1 class="slds-align_absolute-center" style="font-size:20px;color:white;margin-top:-28px">{!translationObject.header__c}</h1>
+                  <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:8px' ng-click="next()">{!translationObject.save_calendar__c}</button>
+                  <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:8px' ng-click="refreshPage()">{!translationObject.Cancel_Button__c}</button>
                 </div>
             </header>  
             <!--Header ends -->
@@ -142,7 +144,7 @@
             <div style="float:right;width:20%;border-radius:5px;margin:10px;overflow:scroll;height:575px" id="cl" >
                  
               <div class="slds-form-element slds-m-around_xx-small">
-                    <label class="slds-form-element__label" for="text-input-id-1">Search Account</label>
+                    <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Search_Account__c}</label>
                     <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                         <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
@@ -174,13 +176,13 @@
                                 </svg>
                                 <span class="slds-assistive-text">Close</span>
                             </button>
-                            <h2 class="slds-text-heading_medium" id="prompt-heading-id">Confirmation</h2>
+                            <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
                         </header>
                         <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
                             <p id="proMsg"></p>
                         </div>
                         <footer class="slds-modal__footer slds-theme_default">
-                            <button class="slds-button slds-button_neutral" ng-click="hidePopup('demo')">Okay</button>
+                            <button class="slds-button slds-button_neutral" ng-click="hidePopup('demo')">{!translationObject.okay__c}</button>
                         </footer>
                     </div>
                 </section>
@@ -200,8 +202,8 @@
                       <span class="slds-assistive-text">Close</span>
                     </button>
                     <h2 id="modalDragHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
-                    <h1 id="CERating" style="padding-top:5px;float:left;padding-left:170px" title="CE Rating"></h1>
-                    <h1 id="CISRating" style="padding-top:5px;float:right;padding-right:170px" title="CIS Rating"></h1>
+                    <h1 id="CERating" style="padding-top:5px;float:left;padding-left:170px" title="{!translationObject.CE_Rating__c}"></h1>
+                    <h1 id="CISRating" style="padding-top:5px;float:right;padding-right:170px" title="{!translationObject.CIS_Rating__c}"></h1>
                   </header>
                   <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height:80vh;">
                   
@@ -215,7 +217,7 @@
                               <input type="checkbox" name="options" id="checkbox-1" value="checkbox-1" ng-model="outOfOffice"/>
                               <label class="slds-checkbox__label" for="checkbox-1">
                                 <span class="slds-checkbox_faux"></span>
-                                <span class="slds-form-element__label">Out of Office</span>
+                                <span class="slds-form-element__label">{!translationObject.Out_of_Office__c}</span>
                               </label>
                             </div>
                           </div>
@@ -223,32 +225,32 @@
 
                         <div class="sub slds-form-element slds-has-error">
                             <label class="slds-form-element__label" for="text-input-id-1">
-                             <abbr class="slds-required" title="required">* </abbr>Subject</label>
+                             <abbr class="slds-required" title="required">* </abbr>{!translationObject.Subject__c}</label>
                            <div class="slds-form-element__control">
-                             <input id="subject" class="slds-input" type="text" value="" placeholder="Subject"/>
+                             <input id="subject" class="slds-input" type="text" value="" placeholder="{!translationObject.Subject__c}"/>
                            </div>
-                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorSubMessage==true">This field is required</div>
+                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorSubMessage==true">{!translationObject.This_field_required__c}</div>
                          </div>
 
                         <div class="Stime slds-form-element slds-has-error"> 
                             <label class="slds-form-element__label" for="text-input-id-1">
-                            <abbr class="slds-required" title="required">* </abbr>Start Time</label><br></br>
+                            <abbr class="slds-required" title="required">* </abbr>{!translationObject.Start_Time__c}</label><br></br>
                            <input type="time" class="slds-input" id="Stime"/><br></br>
-                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorStimeMessage==true">This field is required</div>
+                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorStimeMessage==true">{!translationObject.This_field_required__c}</div>
                         </div> 
 
                         <div class="errorCallType slds-form-element slds-has-error">
                             <label class="slds-form-element__label" for="select-01">
-                              <abbr class="slds-required" title="required">* </abbr>Call Type</label>
+                              <abbr class="slds-required" title="required">* </abbr>{!translationObject.Call_Type__c}</label>
                             <div class="slds-form-element__control">
                               <div class="slds-select_container">
                                 <select class="slds-select" id="callType">
-                                  <option value="">Please select</option>
+                                  <option value="">{!translationObject.Please_select__c}</option>
                                   <option ng-repeat="val in callType">{{val}}</option>
                                 </select>
                               </div>
                             </div>
-                            <div class="slds-form-element__help" id="error-01" ng-show="errorCallType">This field is required</div>
+                            <div class="slds-form-element__help" id="error-01" ng-show="errorCallType">{!translationObject.This_field_required__c}</div>
                           </div>
                          
                         <!--  <label class="slds-form-element__label">CE Rating</label><br></br>
@@ -256,17 +258,17 @@
 
                           <div class="interNational slds-form-element">
                             <input type="text" style="display:none"/>
-                            <label class="slds-form-element__label" for="text-input-id-1">From Date</label>
+                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.From__c} {!translationObject.Date__c}</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                                 <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                                 </svg>
-                                <input id="FromDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                                <input id="FromDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.From__c} {!translationObject.Date__c}" />
                             </div>
                         </div>
 
                         <div class="interNational slds-form-element">
-                          <label class="slds-form-element__label" for="text-input-id-1">Country</label>
+                          <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Country__c}</label>
                           <div class="slds-form-element__control">
                             <input id="country" placeholder="Country" class="slds-input" type="text" value="" />
                           </div>
@@ -274,7 +276,7 @@
 
                         <div class="slds-picklist--draggable">
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-1">Products</span>
+                              <span class="slds-form-element__label" aria-label="select-1">{!translationObject.Product__c}</span>
                               <div class="slds-picklist slds-picklist--multi">
                                   <ul ui-sortable="sortableOptions" ng-model="selectedValuespro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in productList" class="app" ng-class="{active: isActivepro(item)}">
@@ -302,7 +304,7 @@
                               </button>
                           </div>
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-2">Selected Products</span>
+                              <span class="slds-form-element__label" aria-label="select-2">{!translationObject.Selected__c} {!translationObject.Product__c}</span>
                               <div  class="slds-picklist slds-picklist--multi" >                          
                                   <ul ui-sortable="sortableOptions" ng-model="displayArraypro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in displayArraypro" class="app" ng-class="{active: isActivepro(item)}">
@@ -321,29 +323,29 @@
                       
                       <div class="slds-size_1-of-2 slds-p-around_x-small">
                       
-                        <label class="slds-form-element__label">Date</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Date__c}</label><br></br>
                         <span id="ldate"></span>
                         
                         <div class="Etime slds-form-element slds-has-error"> 
                          <label class="slds-form-element__label" for="text-input-id-1">
-                         <abbr class="slds-required" title="required">* </abbr>End Time</label><br></br>
+                         <abbr class="slds-required" title="required">* </abbr>{!translationObject.End_Time__c}</label><br></br>
                         <input type="time" class="slds-input" id="Etime"/><br></br>
-                        <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorEtimeMessage==true">This field is required</div>
+                        <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorEtimeMessage==true">{!translationObject.This_field_required__c}</div>
                        </div>
                        
                       <div class="interNational slds-form-element">
                         <input type="text" style="display:none"/>
-                        <label class="slds-form-element__label" for="text-input-id-1">To Date</label>
+                        <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.To__c} {!translationObject.Date__c}</label>
                         <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                             <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                             </svg>
-                            <input id="ToDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                            <input id="ToDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.To__c} {!translationObject.Date__c}" />
                         </div>
                     </div>
 
                     <div class="slds-form-element" ng-show="contactList.length > 0"> 
-                        <label class="slds-form-element__label" for="select-01">Contact</label>
+                        <label class="slds-form-element__label" for="select-01">{!translationObject.Contact__c}</label>
                         <div class="slds-form-element__control">
                           <div class="slds-select_container">
                             <select class="slds-select" id="contactId">
@@ -355,9 +357,9 @@
                       </div>
 
                     <div class="slds-form-element">
-                      <label class="slds-form-element__label" for="textarea-id-01">Notes</label>
+                      <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Notes__c}</label>
                       <div class="slds-form-element__control">
-                          <textarea id="description" class="slds-textarea" placeholder="Description"></textarea>
+                          <textarea id="description" class="slds-textarea" placeholder="{!translationObject.Notes__c}"></textarea>
                       </div>
                    </div>
 
@@ -370,7 +372,7 @@
                         <input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" ng-click="jointAssignee()" ng-model="joint"/>
                         <label class="slds-checkbox__label" for="checkbox-2">
                           <span class="slds-checkbox_faux"></span>
-                          <span class="slds-form-element__label">Joint Assignee</span>
+                          <span class="slds-form-element__label">{!translationObject.Joint_Assignee__c}</span>
                         </label>
                       </div>
                     </div>
@@ -378,7 +380,7 @@
 
                   <div ng-show="joint">  
                     <div class="slds-form-element slds-size_1-of-2">
-                        <label class="slds-form-element__label" for="text-input-id-1">Search user</label>
+                        <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.user__c}</label>
                         <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                           <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
@@ -389,7 +391,7 @@
                       
                      <div class="slds-picklist--draggable">
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-1">Users</span>
+                              <span class="slds-form-element__label" aria-label="select-1">{!translationObject.user__c}</span>
                               <div class="slds-picklist slds-picklist--multi">
                                   <ul ui-sortable="sortableOptions" ng-model="selectedValues" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in allUser | filter:search" class="app" ng-class="{active: isActive(item)}">
@@ -417,7 +419,7 @@
                               </button>
                           </div>
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-2">Selected Users</span>
+                              <span class="slds-form-element__label" aria-label="select-2">{!translationObject.Selected__c} {!translationObject.user__c}</span>
                               <div  class="slds-picklist slds-picklist--multi" >                          
                                   <ul ui-sortable="sortableOptions" ng-model="displayArray" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in displayArray" class="app" ng-class="{active: isActive(item)}">
@@ -442,7 +444,7 @@
                           <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
                           </svg>
-                          <span class="slds-truncate" title="Section Title">Travel Details</span>
+                          <span class="slds-truncate" title="Section Title">{!translationObject.Travel__c} {!translationObject.Details__c}</span>
                         </button>
                       </h3>
                       <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
@@ -450,26 +452,26 @@
                           <div class="slds-size_1-of-2 slds-p-around_x-small">
 
                               <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="text-input-id-1">No. of days travelled</label>
+                                  <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_days_travelled__c}</label>
                                   <div class="slds-form-element__control">
-                                    <input id="dayTravel" placeholder="No. of days travelled" class="slds-input" type="text" value="" />
+                                    <input id="dayTravel" placeholder="{!translationObject.No_of_days_travelled__c}" class="slds-input" type="text" value="" />
                                   </div>
                                 </div>
       
                                 <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="text-input-id-1">Week no.</label>
+                                  <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Week_no__c}</label>
                                   <div class="slds-form-element__control">
-                                    <input id="week" placeholder="Week no." class="slds-input" type="text" value="" />
+                                    <input id="week" placeholder="{!translationObject.Week_no__c}" class="slds-input" type="text" value="" />
                                   </div>
                                 </div>
       
-                               <label class="interNational slds-form-element__label">Month</label><br></br>
+                               <label class="interNational slds-form-element__label">{!translationObject.Month__c}</label><br></br>
                                 <span class="interNational" id="month"/><br></br>
       
                                 <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="text-input-id-1">Employee Name</label>
+                                  <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Employee_Name__c}</label>
                                   <div class="slds-form-element__control">
-                                    <input id="employeeName" placeholder="Employee" class="slds-input" type="text" value="" />
+                                    <input id="employeeName" placeholder="{!translationObject.Employee_Name__c}" class="slds-input" type="text" value="" />
                                   </div>
                                 </div>
 
@@ -477,23 +479,23 @@
                           <div class="slds-size_1-of-2 slds-p-around_x-small">
 
                               <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="text-input-id-1">From Place</label>
+                                  <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.From__c} {!translationObject.Place__c}</label>
                                   <div class="slds-form-element__control">
-                                    <input id="fromPlace" placeholder="From Place" class="slds-input" type="text" value="" />
+                                    <input id="fromPlace" placeholder="{!translationObject.From__c} {!translationObject.Place__c}" class="slds-input" type="text" value="" />
                                   </div>
                                 </div>
           
                                 <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="text-input-id-1">To Place</label>
+                                  <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.To__c} {!translationObject.Place__c}</label>
                                   <div class="slds-form-element__control">
-                                    <input id="toPlace" placeholder="To Place" class="slds-input" type="text" value="" />
+                                    <input id="toPlace" placeholder="{!translationObject.To__c} {!translationObject.Place__c}" class="slds-input" type="text" value="" />
                                   </div>
                                 </div>
           
                                 <div class="interNational slds-form-element">
-                                  <label class="slds-form-element__label" for="textarea-id-01">Next Visit Planning Remarks</label>
+                                  <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Next_Visit_Planning_Remarks__c}</label>
                                   <div class="slds-form-element__control">
-                                    <textarea id="nextVisitPlanning" class="slds-textarea" placeholder="Planning Remarks"></textarea>
+                                    <textarea id="nextVisitPlanning" class="slds-textarea" placeholder="{!translationObject.Next_Visit_Planning_Remarks__c}"></textarea>
                                   </div>
                                 </div>
 
@@ -508,53 +510,53 @@
                             <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
                               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
                             </svg>
-                            <span class="slds-truncate" title="Section Title">Doctors Details</span>
+                            <span class="slds-truncate" title="Section Title">{!translationObject.Doctors__c} {!translationObject.Details__c}</span>
                           </button>
                         </h3>
                         <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
                             <div class="slds-grid slds-gutters">
                                 <div class="slds-size_1-of-2 slds-p-around_x-small">
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="text-input-id-1">Name</label>
+                                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Name__c}</label>
                                             <div class="slds-form-element__control">
-                                                <input id="name" placeholder="Name" class="slds-input" type="text" value="" />
+                                                <input id="name" placeholder="{!translationObject.Name__c}" class="slds-input" type="text" value="" />
                                             </div>
                                         </div>
 
                                         <div class="slds-form-element">
-                                                <label class="slds-form-element__label" for="textarea-id-01">Address</label>
+                                                <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Address__c}</label>
                                                 <div class="slds-form-element__control">
-                                                  <textarea id="address" class="slds-textarea" placeholder="Address"></textarea>
+                                                  <textarea id="address" class="slds-textarea" placeholder="{!translationObject.Address__c}"></textarea>
                                                 </div>
                                         </div>
                                         
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="text-input-id-1">No. of doctors visited</label>
+                                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_doctors_visited__c}</label>
                                             <div class="slds-form-element__control">
-                                              <input id="doctorVisit" placeholder="No. of doctors visited" class="slds-input" type="text" value="" />
+                                              <input id="doctorVisit" placeholder="{!translationObject.No_of_doctors_visited__c}" class="slds-input" type="text" value="" />
                                             </div>
                                           </div>
                                         
                                 </div>
                                 <div class="slds-size_1-of-2 slds-p-around_x-small">
                                         <div class="slds-form-element">
-                                                <label class="slds-form-element__label" for="text-input-id-1">Contact</label>
+                                                <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Contact__c}</label>
                                                 <div class="slds-form-element__control">
-                                                    <input id="contact" placeholder="Contact" class="slds-input" type="text" value="" />
+                                                    <input id="contact" placeholder="{!translationObject.Contact__c}" class="slds-input" type="text" value="" />
                                                 </div>
                                          </div>
 
                                          <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="text-input-id-1">No. of PMS Collected</label>
+                                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_PMS_Collected__c}</label>
                                             <div class="slds-form-element__control">
-                                              <input id="pmsCollected" placeholder="No. of PMS Collected" class="slds-input" type="text" value="" />
+                                              <input id="pmsCollected" placeholder="{!translationObject.No_of_PMS_Collected__c}" class="slds-input" type="text" value="" />
                                             </div>
                                           </div>
                     
                                           <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="text-input-id-1">No. of Surgeries Attended</label>
+                                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_Surgeries_Attended__c}</label>
                                             <div class="slds-form-element__control">
-                                              <input id="surgery" placeholder="No. of Surgeries Attended" class="slds-input" type="text" value="" />
+                                              <input id="surgery" placeholder="{!translationObject.No_of_Surgeries_Attended__c}" class="slds-input" type="text" value="" />
                                             </div>
                                           </div>
                                        
@@ -569,7 +571,7 @@
                               <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
                               </svg>
-                              <span class="slds-truncate" title="Section Title">Remarks</span>
+                              <span class="slds-truncate" title="Section Title">{!translationObject.Remark__c}</span>
                             </button>
                           </h3>
                           <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
@@ -577,15 +579,15 @@
                                   <div class="slds-size_1-of-2 slds-p-around_x-small">
 
                                       <div class="slds-form-element">
-                                          <label class="slds-form-element__label" for="textarea-id-01">Remark For Tender</label>
+                                          <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_For_Tender__c}</label>
                                           <div class="slds-form-element__control">
-                                            <textarea id="remarkTender" class="slds-textarea" placeholder="Tender Remark"></textarea>
+                                            <textarea id="remarkTender" class="slds-textarea" placeholder="{!translationObject.Remark_For_Tender__c}"></textarea>
                                           </div>
                                   </div>
                                   <div class="slds-form-element">
-                                      <label class="slds-form-element__label" for="textarea-id-01">Remark for market information</label>
+                                      <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_for_market_information__c}</label>
                                       <div class="slds-form-element__control">
-                                          <textarea id="marketInfo" class="slds-textarea" placeholder="Market Information"></textarea>
+                                          <textarea id="marketInfo" class="slds-textarea" placeholder="{!translationObject.Remark_for_market_information__c}"></textarea>
                                       </div>
                                    </div>
 
@@ -593,9 +595,9 @@
                                   <div class="slds-size_1-of-2 slds-p-around_x-small">
 
                                       <div class="slds-form-element">
-                                          <label class="slds-form-element__label" for="textarea-id-01">Remark For Doctor</label>
+                                          <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_For_Doctor__c}</label>
                                           <div class="slds-form-element__control">
-                                              <textarea id="remarkDoctor" class="slds-textarea" placeholder="Doctor Remark"></textarea>
+                                              <textarea id="remarkDoctor" class="slds-textarea" placeholder="{!translationObject.Remark_For_Doctor__c}"></textarea>
                                           </div>
                                        </div>
 
@@ -608,8 +610,8 @@
                   </div>
 
                 <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">Cancel</button>
-                    <button class="slds-button slds-button_brand" ng-click="saveData('nonLeave')">Save</button>
+                    <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">{!translationObject.Cancel_Button__c}</button>
+                    <button class="slds-button slds-button_brand" ng-click="saveData('nonLeave')">{!translationObject.Save__c}</button>
                   </footer>
                 </div>
               </section>
@@ -635,15 +637,15 @@
                       <div class="demo-only demo-only--sizing slds-grid slds-wrap">
                           <div class="slds-size_1-of-2 slds-p-around_x-small">
                               <input type="hidden" id="leaveSubject"/>
-                              <label class="slds-form-element__label">Start Time</label><br></br>
+                              <label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>
                               <input type="time" class="slds-input" id="leaveStartTime"/>
-                              <label class="slds-form-element__label">Date</label><br></br>
+                              <label class="slds-form-element__label">{!translationObject.Date__c}</label><br></br>
                                <span id="leavedate"></span><br></br> 
 
                                <div class="slds-form-element">
-                                  <label class="slds-form-element__label" for="textarea-id-01">Notes</label>
+                                  <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Notes__c}</label>
                                   <div class="slds-form-element__control">
-                                      <textarea id="leavedescription" class="slds-textarea" placeholder="Description"></textarea>
+                                      <textarea id="leavedescription" class="slds-textarea" placeholder="{!translationObject.Notes__c}"></textarea>
                                   </div>
                                 </div>
 
@@ -651,11 +653,11 @@
 
                            <div class="slds-size_1-of-2 slds-p-around_x-small">
 
-                              <label class="slds-form-element__label">End Time</label><br></br>
+                              <label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>
                               <input type="time" class="slds-input" id="leaveEndTime" ng-keyup="checkTime()"/>
-                              <label class="slds-form-element__label">Duration</label><br></br>
+                              <label class="slds-form-element__label">{!translationObject.Duration__c}</label><br></br>
                               <span id="lduration"></span><br></br>  
-                              <label class="callType slds-form-element__label">Call Type</label><br></br>
+                              <label class="callType slds-form-element__label">{!translationObject.Call_Type__c}</label><br></br>
                               <span class="callType" id="leavecallTpe"></span><br></br> 
                              
                            </div>
@@ -664,8 +666,8 @@
                  
                     </div>
                   <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">Cancel</button>
-                    <button class="slds-button slds-button_brand" ng-click="saveData('leave')">Save</button>
+                    <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">{!translationObject.Cancel_Button__c}</button>
+                    <button class="slds-button slds-button_brand" ng-click="saveData('leave')">{!translationObject.Save__c}</button>
                   </footer>
                 </div>
               </section>
@@ -685,27 +687,27 @@
                       <span class="slds-assistive-text">Close</span>
                     </button>
                     <h2 id="modalClickHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
-                    <h1 id="clickCE" style="padding-top:5px;float:left;padding-left:170px" title="CE Rating"></h1>
-                    <h1 id="clickCIS" style="padding-top:5px;float:right;padding-right:170px" title="CIS Rating"></h1>
+                    <h1 id="CERating" style="padding-top:5px;float:left;padding-left:170px" title="{!translationObject.CE_Rating__c}"></h1>
+                    <h1 id="CISRating" style="padding-top:5px;float:right;padding-right:170px" title="{!translationObject.CIS_Rating__c}"></h1>
                   </header>
                   <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     
                     <div class="demo-only demo-only--sizing slds-grid slds-wrap">
                       <div class="slds-size_1-of-2 slds-p-around_x-small">
-                        <label class="slds-form-element__label">Subject</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Subject__c}</label><br></br>
                         <span id="clickSub"></span><br></br>
                         
-                         <label class="slds-form-element__label">Start Time</label><br></br>
+                         <label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>
                         <input type="time" class="slds-input" id="clickStartTime"/>
                         
                         <div class="slds-form-element">
                             <input type="text" style="display:none"/>
-                            <label class="slds-form-element__label" for="text-input-id-1">Date</label>
+                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Date__c}</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                                 <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                                 </svg>
-                                <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                                <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Date__c}" />
                             </div>
                         </div>
 
@@ -714,21 +716,21 @@
 
                         <div class="Other slds-form-element">
                             <input type="text" style="display:none"/>
-                            <label class="slds-form-element__label" for="text-input-id-1">Follow Up Date</label>
+                            <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.follow_up_date__c}</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
                                 <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
                                 </svg>
-                                <input id="followUpDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="Pick a Date" />
+                                <input id="followUpDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Date__c}" />
                             </div>
                         </div>
                         
                         <div class="slds-form-element" ng-show="contactList.length > 0"> 
-                          <label class="slds-form-element__label" for="select-01">Contact</label>
+                          <label class="slds-form-element__label" for="select-01">{!translationObject.Contact__c}</label>
                           <div class="slds-form-element__control">
                             <div class="slds-select_container">
                               <select class="slds-select" id="clickContactId">
-                                <option value="">Please select</option>
+                                <option value="">{!translationObject.product__c}</option>
                                 <option ng-repeat="con in contactList" ng-selected="con.Id == selectedContact" id="{{con.Id}}">{{con.Name}}</option>
                               </select>
                             </div>
@@ -736,34 +738,34 @@
                         </div>
 
                         <div class="slds-form-element">
-                          <label class="slds-form-element__label" for="textarea-id-01">Notes</label>
+                          <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Notes__c}</label>
                           <div class="slds-form-element__control">
-                              <textarea id="clickDescription" class="slds-textarea" placeholder="Description"></textarea>
+                              <textarea id="clickDescription" class="slds-textarea" placeholder="{!translationObject.Notes__c}"></textarea>
                           </div>
                        </div>
 
                       </div>
                       <div class="slds-size_1-of-2 slds-p-around_x-small">
-                         <label class="Other slds-form-element__label">Related To</label><br></br>
+                         <label class="Other slds-form-element__label">{!translationObject.Related_To__c}</label><br></br>
                         <span id="clickRelatedTo"></span><br></br>
 
-                         <label class="slds-form-element__label">End Time</label><br></br>
+                         <label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>
                         <input type="time" class="slds-input" id="clickEndTime"/>
 
-                        <label class="slds-form-element__label">Status</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Status__c}</label><br></br>
                         <span id="status"/><br></br><br></br>
 
                       <!--  <label class="slds-form-element__label">CE Rating</label><br></br>
                         <span id="clickCE"></span><br></br> -->
 
                         <div class='Other' ng-show="readOnly==false">
-                        <label class="slds-form-element__label">Products</label><br></br>
+                        <label class="slds-form-element__label">{!translationObject.Product__c}</label><br></br>
                         <span id="product"/><br></br>
                         </div>
                         <div class='Other'>
                         <div class="slds-picklist--draggable" ng-show="readOnly==true">
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-1">Products</span>
+                              <span class="slds-form-element__label" aria-label="select-1">{!translationObject.Product__c}</span>
                               <div class="slds-picklist slds-picklist--multi">
                                   <ul ui-sortable="sortableOptions" ng-model="selectedValuespro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in productList" class="app" ng-class="{active: isActivepro(item)}">
@@ -791,7 +793,7 @@
                               </button>
                           </div>
                           <div class="slds-form-element">
-                              <span class="slds-form-element__label" aria-label="select-2">Selected Products</span>
+                              <span class="slds-form-element__label" aria-label="select-2">{!translationObject.selected__c} {!translationObject.Product__c}</span>
                               <div  class="slds-picklist slds-picklist--multi" >                          
                                   <ul ui-sortable="sortableOptions" ng-model="displayArraypro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
                                       <div ng-repeat="item in displayArraypro" class="app" ng-class="{active: isActivepro(item)}">
@@ -813,10 +815,10 @@
                     
                   </div>
                   <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" ng-click="hidePopup('eventClickModal')">Cancel</button>
-                    <button class="slds-button slds-button_brand" ng-click="clickUpdate('null')">Update</button>
-                    <button class="slds-button slds-button_brand" id="subnup" ng-click="clickUpdate('submitAndSave')">Submit and Update</button>
-                    <button class="slds-button slds-button_destructive" ng-click="cancelEvent('del')" id="delete">Delete</button>
+                    <button class="slds-button slds-button_neutral" ng-click="hidePopup('eventClickModal')">{!translationObject.Cancel_Button__c}</button>
+                    <button class="slds-button slds-button_brand" ng-click="clickUpdate('null')">{!translationObject.Update__c}</button>
+                    <button class="slds-button slds-button_brand" id="subnup" ng-click="clickUpdate('submitAndSave')">{!translationObject.save_and_submit__c}</button>
+                    <button class="slds-button slds-button_destructive" ng-click="cancelEvent('del')" id="delete">{!translationObject.Delete__c}</button>
                   </footer>
                 </div>
               </section>
@@ -834,6 +836,31 @@
               </div>
             </div>
             <!-- spinner-->
+
+        <!-- warning prompt -->
+               <div class="warning demo-only slds-hide" style="height: 24rem;">
+                <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt" aria-modal="true">
+                  <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                      <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" ng-click="hidePopup('warning')">
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                      </button>
+                      <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Warning__c}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                      <p id="warn"></p>
+                    </div>
+                    <footer class="slds-modal__footer slds-theme_default">
+                      <button class="slds-button slds-button_neutral" ng-click="hidePopup('warning')">{!translationObject.Okay__c}</button>
+                    </footer>
+                  </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+              </div>
+              <!-- warning promt -->
           </div>
       </body>
   </html>
@@ -844,6 +871,7 @@
   var previousDay = {!$Label.DCR_past_date};
   console.log('Past date : ',previousDay);
     $(document).ready(function(){
+        console.log('Please select value ::','{!translationObject.Please_select__c}');
         //Search filter for Account List
         $("#searchId").on("keyup", function() {
             var value = $(this).val().toLowerCase();
@@ -903,7 +931,7 @@
           event.push({
                 title:eventList[i].Subject,
                 start:evda,
-                backgroundColor:eventList[i].Status__c == 'Sent for Approval' ? '#67BCF7' : eventList[i].Status__c == 'Approved' ? '#07F507': eventList[i].Status__c == 'Rejected' ? '#FC210B' : '#F1B55A',
+                backgroundColor:eventList[i].Status__c == '{!translationObject.Sent_for_Approval__c}' ? '#67BCF7' : eventList[i].Status__c == '{!translationObject.Approved__c}' ? '#07F507': eventList[i].Status__c == '{!translationObject.Rejected__c}' ? '#FC210B' : '#F1B55A',
                 textColor:'white',
                 className:arr,
                 editable:eventList[i].Event_Locked__c ? false : true,
@@ -940,6 +968,7 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
+            locale: '{!curentLang}',
             selectable: true,
             selectHelper:true,
             editable: true,
@@ -980,12 +1009,12 @@
                       var mmn = mm < 10 ? 0+''+mm : mm;
                       $('#followUpDate').val(yy+'-'+mmn+'-'+dd);
                     }
-                    if(event.className[6] == 'Draft' || event.className[7] == 'Ophthalmic_Vision' || event.className[7] == 'Ortho_Dermal'){
+                    if(event.className[6] == '{!translationObject.Draft__c}' || event.className[7] == 'Ophthalmic_Vision' || event.className[7] == 'Ortho_Dermal'){
                       $('#subnup').show();
                     }else{
                       $('#subnup').hide();
                     }
-                    if(event.className[6] == 'Sent for Approval' || event.className[6] == 'Approved'){
+                    if(event.className[6] == '{!translationObject.Sent_for_Approval__c}' || event.className[6] == '{!translationObject.Approved__c}'){
                       $('#delete').prop('disabled',true);
                     }else{
                       $('#delete').prop('disabled',false);
@@ -1002,7 +1031,7 @@
                     }else{
                       $('.Other').show();
                     }
-                    if(event.className[5] || event.className[6] == 'Sent for Approval'){
+                    if(event.className[5] || event.className[6] == '{!translationObject.Sent_for_Approval__c}'){
                         $('#clickDate').attr('disabled', true);
                         $('#clickStartTime').attr('disabled', true);
                         $('#clickEndTime').attr('disabled', true);
@@ -1087,7 +1116,7 @@
                     }else{
                       $('#subnup').hide();
                     }
-                    if(event.className[6] == 'Sent for Approval' || event.className[6] == 'Approved'){
+                    if(event.className[6] == '{!translationObject.Sent_for_Approval__c}' || event.className[6] == '{!translationObject.Approved__c}'){
                       $('#delete').prop('disabled',true);
                     }else{
                       $('#delete').prop('disabled',false);
@@ -1104,7 +1133,7 @@
                       $('.Other').show();
                     }  
                     //Disabling the fields if event is locked or submited
-                    if(event.className[5] || event.className[6] == 'Sent for Approval'){
+                    if(event.className[5] || event.className[6] == '{!translationObject.Sent_for_Approval__c}'){
                         $('#clickDate').attr('disabled', true);
                         $('#clickStartTime').attr('disabled', true);
                         $('#clickEndTime').attr('disabled', true);
@@ -1173,7 +1202,9 @@
                   $('#accountId').val(event.className[0]);
                 }else{
                   if(event.className[1]=='true'){
-                      alert('Account is locked due to '+event.className[2]);
+                      //alert('{!translationObject.Account_Lock_Error__c}'+event.className[2]);
+                      $('.warning').removeClass('slds-hide');
+                      $('#warn').text('{!translationObject.Account_Lock_Error__c}'+ event.className[2]);
                       $('#calendar').fullCalendar('removeEvents', event._id);
                   }else{
                       $('.accountDragModal').removeClass('slds-hide');
@@ -1278,7 +1309,7 @@
             console.log(error);
         }
 
-        $scope.accountList.unshift({"Name":"Leave","Id":"001Leave"},{"Name":"Holiday","Id":"001LeaveHoli"},{"Name":"Review Meeting","Id":"001LeaveCorp"});
+        $scope.accountList.unshift({"Name":"{!translationObject.Leave__c}","Id":"001Leave"},{"Name":"{!translationObject.Holiday__c}","Id":"001LeaveHoli"},{"Name":"{!translationObject.Review_Meeting__c}","Id":"001LeaveCorp"});
         console.log('account : ',$scope.accountList);
         
        //Multi Select logic 
@@ -1385,7 +1416,9 @@
                 countForAddpro--;
             }
           }else{
-            alert('You can not add more than 3 products');
+            $('.warning').removeClass('slds-hide');
+            $('#warn').text('{!translationObject.Product_error__c}');
+              //alert('{!translationObject.Product_error__c}');
             console.log('in addtodisplay');
           }
             
@@ -1577,7 +1610,7 @@
               $scope.contactId = '';
               $scope.joint = false;
               $scope.outOfOffice = false;
-              $('#callType').val('Please select');
+              $('#callType').val('{!translationObject.please_select__c}');
               if($scope.displayArraypro.length > 0){
                 for(var i=0; i<$scope.displayArraypro.length;i++){
                   $scope.productList.push($scope.displayArraypro[i]);
@@ -1621,17 +1654,21 @@
                     function(records, event) {
                         if (event.statusCode == 200) {
                           $('.loader').addClass('slds-hide');
-                          $('#proMsg').text('Event ready for visit');
+                          $('#proMsg').text('{!translationObject.success_message__c}');
                           $scope.showPopup('demo');
                         }else{
                           $('.loader').addClass('slds-hide');
-                          alert('failed to create event..');
+                          $('.warning').removeClass('slds-hide');
+                                      $('#warn').text('{!translationObject.Error_Message__c}');
+                          //alert('{!translationObject.Error_Message__c}');
                         }
                     }, {
                     escape: false
                  });
                }else{
-                   alert('No account dragged on calendar to create events.');
+                   $('.warning').removeClass('slds-hide');
+                           $('#warn').text('{!translationObject.Account_Error__c}');
+                   //alert('{!translationObject.Account_Error__c}');
                }
                 
            }
@@ -1669,7 +1706,9 @@
                                 $('#calendar').fullCalendar( 'addEventSource', event);
                             }
                             else{
-                                alert('There is no records for this user');
+                                $('.warning').removeClass('slds-hide');
+                                                $('#warn').text('{!translationObject.User_Error__c}');
+                                //alert('{!translationObject.User_Error__c}');
                             }
                            
                         }, {
@@ -1693,11 +1732,15 @@
              var et = $('#leaveEndTime').val().length;
               if(temp == 'leave'){
                 if(st == 0){
-                  alert('Please enter the leave details');
+                  $('.warning').removeClass('slds-hide');
+                          $('#warn').text('{!translationObject.Leave_Error__c}');
+                    //alert('{!translationObject.Leave_Error__c}');
                   return;
                 }
                 if(et == 0){
-                  alert('Please enter the leave details');
+                  $('.warning').removeClass('slds-hide');
+                          $('#warn').text('{!translationObject.Leave_Error__c}');
+                    //alert('{!translationObject.Leave_Error__c}');
                   return;
                 }
                 finalData.push({
@@ -1766,7 +1809,7 @@
                     $('.sub').removeClass('slds-has-error');
                     $scope.errorSubMessage=false;
                 }
-                if(callType == 'Please select'){
+                if(callType == '{!translationObject.Please_Select__c}'){
                     $scope.errorCallType = true;
                     $('.errorCallType').addClass('slds-has-error');
                 }else{
@@ -1863,7 +1906,9 @@
                       $scope.hidePopup('accountDragModal');
                       $scope.refreshData();
                       }else{
-                          alert('Event duration can not be negative. Please enter correct time.');
+                          $('.warning').removeClass('slds-hide');
+                                    $('#warn').text('{!translationObject.event_time_error__c}');
+                          //alert('{!translationObject.event_time_error__c}');
                       }
                 }
               }
@@ -1925,7 +1970,9 @@
                                 window.location.reload();
                             }else{
                               $scope.hidePopup('loader');
-                              alert('Failed to update the event..');
+                              $('.warning').removeClass('slds-hide');
+                                            $('#warn').text('{!translationObject.Error_Message__c}');
+                                //alert('{!translationObject.Error_Message__c}');
                             }
                            
                         }, {
@@ -1981,7 +2028,7 @@
                   $('#calendar').fullCalendar('removeEvents', hid);
                   $scope.refreshData();
                }else if(temp == 'del'){
-                  if(confirm('Are you sure to delete this event.')){
+                  if(confirm('{!translationObject.delete_message__c}')){
                     var hid = $('#hideId').val();
                     var upId = $('#eventClassName').val();
                     $('#calendar').fullCalendar('removeEvents', hid);
@@ -2014,10 +2061,10 @@
     });
     
      $(document).ready(function() {
-        
+        $.datepicker.setDefaults( $.datepicker.regional[ "{!curentLang}" ] );
         $('#clickDate').datepicker({
             dateFormat: 'yy-mm-dd',
-            minDate : previousDay
+            minDate : previousDay,
         });
         $('#FromDate').datepicker({
             dateFormat: 'yy-mm-dd'

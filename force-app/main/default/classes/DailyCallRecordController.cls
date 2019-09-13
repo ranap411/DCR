@@ -12,6 +12,8 @@ global with sharing class DailyCallRecordController {
     public string userObject{get;set;}
     public string managerList{get;set;}
     public string productList{get;set;}
+    public DCR_Planning_Translation_Turkey__c translationObject{get;set;}
+    public String curentLang {get;set;}
    
    //Constructor
     global DailyCallRecordController(){
@@ -19,6 +21,8 @@ global with sharing class DailyCallRecordController {
             userObj = [select id, name, profileId,User_Type__c from user where id =: userInfo.getUserId() limit 1];
             userObject = JSON.serialize(userObj);
             System.debug('user object : '+userObject);
+            curentLang = userinfo.getLanguage();
+            translationObject = DCR_Planning_Translation_Turkey__c.getValues(curentLang);
             list<user> mngList = [select id, name from user where managerId = : userinfo.getUserId()];
             if(!mngList.isempty()){
                 String ues = JSON.serialize(mngList);
@@ -26,8 +30,8 @@ global with sharing class DailyCallRecordController {
                 System.debug('manager List : '+managerList);
             }
             system.debug('Manager list : '+managerList);
-            list<event> evObj =[select id,follow_Up_Date__c,ActivityDate,startdateTime,DCR_Description__c,endDateTime,subject,Product__c,Account__r.Name,Account__r.RecordType.DeveloperName,Event_Locked__c,
-                                CE_Rating__c,CIS_Rating__C, Status__c,Other_Type__c,Account__c,WhoId from event where ownerId =:UserInfo.getUserId()];
+            list<event> evObj =[select id,follow_Up_Date__c,ActivityDate,startdateTime,DCR_Description__c,endDateTime,subject,toLabel(Product__c),Account__r.Name,Account__r.RecordType.DeveloperName,Event_Locked__c,
+                                CE_Rating__c,CIS_Rating__C, toLabel(Status__c),Other_Type__c,Account__c,WhoId from event where ownerId =:UserInfo.getUserId()];
             if(!evObj.isEmpty()){
                 String res = JSON.serialize(evObj);
                 eventData = res.escapeUnicode().remove('\'');

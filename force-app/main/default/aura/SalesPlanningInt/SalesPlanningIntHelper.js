@@ -20,8 +20,8 @@
     },
     handleActive: function (component, event) {
         let lastDayForPlanning =  component.get("v.endDayOfMonth");
-        console.log("In SalesPLanningINt-->H-->handleActive_M-->endDay-->"+lastDayForPlanning);
-        console.log("In SalesPLanningINt-->H-->handleActive_M-->typeof endDay-->"+typeof lastDayForPlanning);
+        //console.log("In SalesPLanningINt-->H-->handleActive_M-->endDay-->"+lastDayForPlanning);
+        //console.log("In SalesPLanningINt-->H-->handleActive_M-->typeof endDay-->"+typeof lastDayForPlanning);
         var tabToLockOrUnlockMap = component.get("v.passValueMap");
         var tab = event.getSource();
         switch (tab.get('v.id')) {
@@ -71,7 +71,7 @@
                 break;  
             case 'Mar' :
                 var tabToLock = tabToLockOrUnlockMap['Mar'];
-                console.log("In SalesPLanningINt-->H-->handleActive_M-->tabToLock???-->"+tabToLock);
+                //console.log("In SalesPLanningINt-->H-->handleActive_M-->tabToLock???-->"+tabToLock);
                 this.injectComponent('c:TargetAndPlanningInt', tab, 'Mar', lastDayForPlanning, tabToLock);
                 break;  
                 
@@ -79,9 +79,9 @@
     },
     injectComponent: function (compName, parentComp,currSelectedTab,lastPlanningDay,lockthisTab) {
         var lastPlnDay = parseInt(lastPlanningDay);
-         console.log("In SalesPLanningINt-->H-->injectComponent_M-->parsed Day String-->"+lastPlnDay);
-         console.log("In SalesPLanningINt-->H-->injectComponent_M-->typeof Day String-->"+typeof lastPlnDay);
-        console.log("In SalesPLanningINt-->H-->injectComponent_M-->lockDisTab???-->"+lockthisTab);
+         //console.log("In SalesPLanningINt-->H-->injectComponent_M-->parsed Day String-->"+lastPlnDay);
+         //console.log("In SalesPLanningINt-->H-->injectComponent_M-->typeof Day String-->"+typeof lastPlnDay);
+        //console.log("In SalesPLanningINt-->H-->injectComponent_M-->lockDisTab???-->"+lockthisTab);
         $A.createComponent(compName, {
             "aura:id": currSelectedTab,
             "targetMonth": currSelectedTab,

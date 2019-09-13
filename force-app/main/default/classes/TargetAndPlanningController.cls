@@ -121,7 +121,7 @@ public with sharing class TargetAndPlanningController {
         
     }
     
-    // Return Account that has Monthly Plan Records otherwise the account is not activated.
+    // Return Account that has Monthly Plan Records 
     @AuraEnabled //(cacheable=true)
     public static List<Monthly_Plan__c> getAccounts( String month, String year, String demographic ){
         List<String> divList = new  List<String>();
@@ -148,7 +148,7 @@ public with sharing class TargetAndPlanningController {
                 //System.debug('ZZZ NEW YEAR-->'+year);
             }
             
-            return     [ Select Name,Month__c,Year__c,Financial_Year__c,Financial_Year_Date__c,Account__c,Account__r.Name,Account__r.CE_Rating__c,Account__r.CIS_Rating__c,Account__r.OwnerId,Account__r.SAP_Code__c,Account__r.Status__c,Account__r.RecordType.DeveloperName,
+            return     [ Select Name,Month__c,Year__c,Financial_Year__c,Financial_Year_Date__c,Account__c,Account__r.Name,Account__r.CE_Rating__c,Account__r.CIS_Rating__c,Account__r.OwnerId,Account__r.SAP_Code__c,Account__r.Status__c,Account__r.RecordType.DeveloperName,Account__r.Temprary_Id__c,
                         (Select Id,Name,Month__c,Monthly_Plan__c,Year__c,Planned_Amount__c,Planned_Quantity__c,User__c,Product__c,Monthly_Target__c
                          From Monthly_Product_Plans__r Where Month__c=: month 
                          AND Year__c=: year //coz in front end while Saving MPP Year is MonthlyPlan's Year__c(mp.Year__c )
@@ -159,11 +159,11 @@ public with sharing class TargetAndPlanningController {
                         //         Where Month__c=: month AND Year__c=: year
                         Where Month__c=: month AND Financial_Year__c=: Constants.CURRENT_FISCALYEAR  // Using Fiscal Year
                         //AND Account__r.OwnerId =:UserInfo.getUserId()
-                        AND Account__r.Status__c =:Constants.ACCOUNT_STATUS_ACTIVATED 
+                        //AND Account__r.Status__c =:Constants.ACCOUNT_STATUS_ACTIVATED 
                         AND (Account__r.RecordType.DeveloperName =:Constants.ACCOUNT_DOM_DISTRIBUTOR_RECORDTYPEDEVELOPERNAME
                              OR Account__r.RecordType.DeveloperName =:Constants.ACCOUNT_DOM_DOCTOR_RECORDTYPEDEVELOPERNAME)
                         //only show mp with mpp not nulll  AND Id IN (Select Monthly_Plan__c From Monthly_Product_Plan__c Where Month__c=: month and Year__c=: year And Product__c != null AND Monthly_Plan__c != null AND Monthly_Target__c != NULL)
-                        //ORDER BY  Account__r.Status__c
+                        ORDER BY  Account__r.Name ASC
                        ];    
         }else if(demographic == Constants.DEMOGRAPHIC_TURKEY){
             System.debug('ZZZ IN Target&PlanCon-->getAcc_M--> Inside Turkey!!!');

@@ -201,6 +201,9 @@
     },
     onAccOverdueChangeH : function(component, event) {
         
+        var numOfAccOverdue = component.find("numOfAccOverdue").get("v.value");
+        console.log('In AccBrnchFormComp-->H-->onTotalCusMapChangeH_M-->onAccOverdueChangeH VAL-->'+numOfAccOverdue);  
+        
         var tsmVal = component.find("totalCusMapped").get("v.value");
         var accOverdueVal = component.find("accOverdue").get("v.value");
         if(! $A.util.isUndefinedOrNull(accOverdueVal) && accOverdueVal != ''){
@@ -227,7 +230,17 @@
             component.find("perAccOverdue2").set("v.value", 0 );     
         }
         
-        component.find("taccOverdue").set("v.value", ( ($A.util.isEmpty(accOverdueVal)) ? parseFloat(0) : parseFloat(accOverdueVal))  + (($A.util.isEmpty(accOverdueVal2)) ? parseFloat(0) : parseFloat(accOverdueVal2)) );     
+        component.find("taccOverdue").set("v.value", ( ($A.util.isEmpty(accOverdueVal)) ? parseFloat(0) : parseFloat(accOverdueVal))  + (($A.util.isEmpty(accOverdueVal2)) ? parseFloat(0) : parseFloat(accOverdueVal2)) );  
+        
+        console.log('In AccBrnchFormComp-->H-->onAccOverdueChangeH VAL-->totalAccOverdue val-->'+component.find("taccOverdue").get("v.value"));  
+        var sumOfTotalAccOverdue = component.find("taccOverdue").get("v.value");
+        
+        if(sumOfTotalAccOverdue > numOfAccOverdue){
+            alert("Sum of Account Overdues(Bundled + Non-Bundled) cannot be greater than No.of Account Overdue");
+            component.find("accOverdue").set("v.value","");
+            component.find("accOverdue2").set("v.value","");
+            component.find("taccOverdue").set("v.value","");
+        }
         
         var totalTSM = component.find("ttotalCusMapped").get("v.value"); 
         var totalAccOverdue = component.find("taccOverdue").get("v.value");

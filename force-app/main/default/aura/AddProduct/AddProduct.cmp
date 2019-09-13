@@ -111,11 +111,7 @@
             <h4> Total ListPrice: <ui:outputNumber value="{!v.TotalProductVolume}"/>  </h4> 
             <h4 style="padding-right:205px;"> Total SellingPrice: <ui:outputNumber value="{!v.TotalProductVolume}"/>  </h4>                  
         </div>-->	
-            
-            
-            
-            
-            <div style="text-align:right;padding:3px;">       
+                        <div style="text-align:right;padding:3px;">       
                 <lightning:input     icon="utility:search"
                                  value="{! v.searchString }"
                                  required="false"
@@ -124,6 +120,7 @@
                                  aura:id="searchField"                                
                                  onkeyup="{!c.handleSearch}"/> 
             </div>
+           
         </div>
         
         <!--<div style="height: 600px"> this set maximum height of datatable and make it scrollable-->

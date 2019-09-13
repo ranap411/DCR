@@ -13,7 +13,7 @@ public class BatchClassforMonthlyPlanTEst {
         // insert 10 accounts
         
         accounts.add(new Account(name='Account', 
-                                 Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated'));
+                                 Country_Key__c='IN', City__c='mumbai',City_postal_code__c='400001',Account_Locked__c=false,Status__c='Activated',GSTIN_No__c='GSTIN2343423456'));
         List<Event> test_eve=new List<Event>();
         
          List<Event> test_eve1=new List<Event>();
@@ -43,8 +43,8 @@ public class BatchClassforMonthlyPlanTEst {
         BatchCreateBeatPlan bcp=new BatchCreateBeatPlan();
         Id batchId2 = Database.executeBatch(bcp);
         
-        BatchDCRCallOutClass bdcr=new BatchDCRCallOutClass();
-         Id batchId3 = Database.executeBatch(bdcr);
+        //BatchDCRCallOutClass bdcr=new BatchDCRCallOutClass();
+        // Id batchId3 = Database.executeBatch(bdcr);
         Test.stopTest();
     }
 }
